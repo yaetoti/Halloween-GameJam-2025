@@ -2,7 +2,8 @@ using UnityEngine;
 
 [System.Serializable]
 public class RoomCameraData {
-  public Vector2 position;
+  public Transform position;
+  //public Vector2 position;
 }
 
 // Per-level singleton
@@ -15,6 +16,7 @@ public class CameraManager : MonoBehaviour {
   public static CameraManager Instance { get; private set; }
 
   // Params
+  public AnimationCurve speedCurve;
   public RoomCameraData livingRoomData;
   public RoomCameraData garageData;
   public Camera activeCamera;
@@ -69,7 +71,7 @@ public class CameraManager : MonoBehaviour {
       // TODO easing functions
       
       // Move to the desired location
-      Vector2 position = Vector2.Lerp(m_lastPosition, m_targetPosition, m_transferProgress);
+      Vector2 position = Vector2.Lerp(m_lastPosition, m_targetPosition, speedCurve.Evaluate(m_transferProgress));
 
       // Save z coordinate
       var cameraPos = activeCamera.transform.position;
@@ -80,10 +82,10 @@ public class CameraManager : MonoBehaviour {
   public void MoveToLocation(RoomType type) {
     switch (type) {
     case RoomType.GARAGE:
-      m_targetPosition = garageData.position;
+      m_targetPosition = garageData.position.position;
       break;
     case RoomType.LIVING_ROOM:
-      m_targetPosition = livingRoomData.position;
+      m_targetPosition = livingRoomData.position.position;
       break;
     default:
       Debug.LogError("Unknown room type");
@@ -91,9 +93,9 @@ public class CameraManager : MonoBehaviour {
     }
 
     m_lastPosition = activeCamera.transform.position;
-    Debug.Log("Last position: " + m_lastPosition);
-    Debug.Log("Target position: " + m_targetPosition);
-    Debug.Log("Transfer time: " + transferTimeSeconds);
+    // Debug.Log("Last position: " + m_lastPosition);
+    // Debug.Log("Target position: " + m_targetPosition);
+    // Debug.Log("Transfer time: " + transferTimeSeconds);
     m_transferProgress = 0.0f;
     m_state = State.TRANSFER;
   }

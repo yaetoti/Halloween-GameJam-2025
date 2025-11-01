@@ -77,12 +77,15 @@ public class GameManager : MonoBehaviour {
   }
   
   public float GetDoorHealth() {
-    // TODO implement
-    return 0.0f;
+    return m_doorHealth;
   }
 
   public float GetClockState() {
     return m_clockState;
+  }
+
+  public void SetClockState(float state) {
+    m_clockState = state;
   }
   
   public float GetTimeTillVictory() {

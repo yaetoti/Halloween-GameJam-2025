@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [DefaultExecutionOrder(-100)]
-public class GameManager : MonoBehaviour {
-  public static GameManager Instance { get; private set; }
-  
+public class GameManager : SceneSingleton<GameManager> {
   // Params
   public float lureRadius;
   public float hammerRadius;
@@ -18,12 +16,6 @@ public class GameManager : MonoBehaviour {
   private Clock clockObject;
   [SerializeField]
   private GameObject doorObject;
-  [SerializeField]
-  private List<GameObject> lureObjects = new();
-  [SerializeField]
-  private List<GameObject> zombieObjects = new();
-  [SerializeField]
-  private List<GameObject> ghostObjects = new();
 
   // State (initialization is in Initialize())
   private RoomType m_currentRoom;
@@ -44,35 +36,8 @@ public class GameManager : MonoBehaviour {
   
   // TODO InteractionManager (or player)
   // TODO SpawnManager
-  
-  
-  private void Awake() {
-    Initialize();
-  }
 
-  private void OnEnable() {
-    // Anti-crash for domain reloading
-#if UNITY_EDITOR
-    Initialize();
-#endif
-  }
-  
-  private void Initialize() {
-    // Singleton init
-    if (Instance == this) {  
-      return;  
-    }  
-      
-    if (Instance is not null) {
-      Destroy(this);
-      return;
-    }  
-    
-    Instance = this;
-    //DontDestroyOnLoad(this);
-    
-    // Real initialization
-
+  protected override void OnInitializeSingleton() {
     m_currentRoom = RoomType.LIVING_ROOM;
     m_activeTool = ToolType.HAMMER;
     m_candyCount = 0;
@@ -105,42 +70,6 @@ public class GameManager : MonoBehaviour {
 
   public GameObject GetDoor() {
     return doorObject;
-  }
-  
-  public List<GameObject> GetLureObjects() {
-    return lureObjects;
-  }
-  
-  public List<GameObject> GetZombieObjects() {
-    return zombieObjects;
-  }
-  
-  public List<GameObject> GetGhostObjects() {
-    return ghostObjects;
-  }
-
-  public void RegisterLure(GameObject obj) {
-    lureObjects.Add(obj);
-  }
-  
-  public void RegisterZombie(GameObject obj) {
-    zombieObjects.Add(obj);
-  }
-  
-  public void RegisterGhost(GameObject obj) {
-    ghostObjects.Add(obj);
-  }
-
-  public void UnregisterLure(GameObject obj) {
-    lureObjects.Remove(obj);
-  }
-  
-  public void UnregisterZombie(GameObject obj) {
-    zombieObjects.Remove(obj);
-  }
-  
-  public void UnregisterGhost(GameObject obj) {
-    ghostObjects.Remove(obj);
   }
   
   

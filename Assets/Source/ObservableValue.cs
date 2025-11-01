@@ -20,6 +20,7 @@ public class ObservableValue<T> {
   private T value;
 
   public ObservableValue() {
+    value = default;
   }
 
   public ObservableValue(T value) {

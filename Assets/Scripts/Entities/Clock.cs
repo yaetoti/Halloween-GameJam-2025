@@ -52,17 +52,14 @@ public class Clock : MonoBehaviour {
   
   // State
   // [0-1]
-  public ObservableValue<float> UnwindingProgress { get; private set; }
+  public ObservableValue<float> UnwindingProgress { get; private set; } = new();
 
   // [0-1] Game time progress. From 2:00 to 5:00
-  public ObservableValue<float> TimeProgress { get; private set; }
-  
-  public ObservableValue<ClockState> CurrentClockState { get; private set; }
+  public ObservableValue<float> TimeProgress { get; private set; } = new();
 
-  public void Awake() {
-    TimeProgress = new();
-    UnwindingProgress = new();
-    CurrentClockState = new(ClockState.UNWINDING);
+  public ObservableValue<ClockState> CurrentClockState { get; private set; } = new(ClockState.UNWINDING);
+
+  private void Awake() {
   }
 
   public void Update() {

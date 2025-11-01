@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5f4b9f8077df6bb49bec7606a9f6019b
+guid: c213fcdbd50beaf499f44f0caedbd81b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8398623085493978724
-    second: living_room_dark_0
+      213: -1893012974111229302
+    second: GaraheMaks_Brigth_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,6 +97,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -113,12 +126,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: living_room_dark_0
+      name: GaraheMaks_Brigth_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1666
         y: 0
-        width: 1920
+        width: 254
         height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c997cb23dc8127b80800000000000000
-      internalID: -8398623085493978724
+      spriteID: a8af4eacabaaab5e0800000000000000
+      internalID: -1893012974111229302
       vertices: []
       indices: 
       edges: []
@@ -147,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      living_room_dark_0: -8398623085493978724
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

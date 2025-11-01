@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      broken_big_lure_0: -8027333206186412214
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

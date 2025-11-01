@@ -2,7 +2,8 @@ using UnityEngine;
 
 public enum ToolType {
   HAMMER,
-  LURE,
+  LURE_SMALL,
+  LURE_BIG,
 }
 
 // TODO more lures?

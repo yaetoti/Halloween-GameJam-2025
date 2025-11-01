@@ -50,6 +50,20 @@ public class GameManager : SceneSingleton<GameManager> {
 
   private void Update() {
     // TODO state check (return if not playing)
+
+    if (Input.GetKeyDown(KeyCode.Alpha1)) {
+      m_activeTool = ToolType.HAMMER;
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha2)) {
+      m_activeTool = ToolType.LURE_SMALL;
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha3)) {
+      m_activeTool = ToolType.LURE_BIG;
+    }
+
+    Debug.Log("Active tool: " + m_activeTool);
+    
+    // TODO REMOVE
     
     gameTimeSeconds += Time.deltaTime;
 

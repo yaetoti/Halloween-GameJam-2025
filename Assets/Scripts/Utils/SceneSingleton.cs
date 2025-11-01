@@ -25,6 +25,7 @@ public abstract class SceneSingleton<T> : MonoBehaviour where T : SceneSingleton
     }
 
     if (Instance is not null) {
+      //Debug.Log("FFOCKING DESTROY ALRIGHT?");
       Destroy(this);
       return;
     }

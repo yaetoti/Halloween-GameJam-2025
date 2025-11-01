@@ -1,9 +1,9 @@
-
 using System;
 using UnityEditor;
 using UnityEngine;
 
 #if UNITY_EDITOR
+
 [CustomEditor(typeof(TestCameraManager))]
 public class TestCameraManagerEditor : Editor {
   public override void OnInspectorGUI() {
@@ -18,6 +18,7 @@ public class TestCameraManagerEditor : Editor {
     }
   }
 }
+
 #endif
 
 public class TestCameraManager : MonoBehaviour {

@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      lure_lvl2_icon_0: -5864591814762385081
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

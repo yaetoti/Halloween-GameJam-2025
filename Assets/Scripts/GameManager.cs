@@ -62,13 +62,17 @@ public class GameManager : MonoBehaviour {
     return m_currentRoom;
   }
   
-  public ToolType GetActiveTool() {
-    return m_activeTool;
-  }
-
   public void SetCurrentRoom(RoomType type) {
     m_currentRoom = type;
-    // TODO transition
+    CameraManager.Instance.MoveToLocation(type);
+  }
+
+  public void ToggleRoom() {
+    SetCurrentRoom(m_currentRoom == RoomType.GARAGE ? RoomType.LIVING_ROOM : RoomType.GARAGE);
+  }
+  
+  public ToolType GetActiveTool() {
+    return m_activeTool;
   }
 
   public void SetActiveTool(ToolType type) {

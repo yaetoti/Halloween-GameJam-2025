@@ -19,17 +19,15 @@ public class HealthBar : MonoBehaviour
 
     private void OnEnable()
     {
-        MaxHealth = MaxHealth == 0 ? 1 : MaxHealth;
-
         m_healthBarMat = transform.GetChild(0).
                         GetComponent<SpriteRenderer>().material;
-
-        UpdateHealthBar();
+                        
+        MaxHealth = MaxHealth == 0 ? 1 : MaxHealth;
     }
 
     private void UpdateHealthBar()
     {
-        Health = Mathf.Clamp(Health, 0, MaxHealth);
+        m_health = Mathf.Clamp(m_health, 0, m_maxHealth);
         m_healthBarMat.SetFloat("_Health", Health / MaxHealth);
     }
 }

@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
   // Params
-  public float moveSpeed;
+  [SerializeField]
+  private float moveSpeed;
   
   // State
   private Rigidbody2D m_rigidbody;
@@ -13,10 +14,13 @@ public class Player : MonoBehaviour {
   }
 
   private void Update() {
-
+    // TODO
+    // --- Tools ---
   }
 
   private void FixedUpdate() {
+    // --- Movement ---
+    
     var wishDir = GetWishDir(out bool isMoving);
     var damping = m_rigidbody.linearVelocity;
     var movementSpeed = wishDir * moveSpeed - damping;

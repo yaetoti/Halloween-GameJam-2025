@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [DefaultExecutionOrder(-100)]
@@ -8,17 +10,40 @@ public class GameManager : MonoBehaviour {
   public float lureRadius;
   public float hammerRadius;
   // TODO: Will we need initial value? If so, create zombieSpawnRateInitial and change getter
-  public float zombieSpawnRate;
-  public float initialDoorHealth;
-  public float gameLengthSeconds;
-  
+  public float zombieSpawnRate; // TODO spawner is controlling it
+  public float initialDoorHealth; // TODO door is controlling it
+  public float gameLengthSeconds; // TODO clock is controlling it
+
+  [SerializeField]
+  private Clock clockObject;
+  [SerializeField]
+  private GameObject doorObject;
+  [SerializeField]
+  private List<GameObject> lureObjects = new();
+  [SerializeField]
+  private List<GameObject> zombieObjects = new();
+  [SerializeField]
+  private List<GameObject> ghostObjects = new();
+
   // State (initialization is in Initialize())
   private RoomType m_currentRoom;
   private ToolType m_activeTool;
   private int m_candyCount;
-  private float m_doorHealth;
-  private float m_clockState;
+  private float m_doorHealth; // TODO remove. We have a door gameObject
+  private float m_clockState; // TODO remove. We have clock gameObject
   private float gameTimeSeconds;
+  
+  // Entities
+  
+  
+  // Door is just.. HealthBar, Health
+  // +entities arrays
+  // TODO Add entities: ghosts, zombies
+  
+  // Place LMB: in trigger, no overlaps, enough candies -> Add Lure at this position + Register
+  
+  // TODO InteractionManager (or player)
+  // TODO SpawnManager
   
   
   private void Awake() {
@@ -58,6 +83,70 @@ public class GameManager : MonoBehaviour {
     Debug.Log("GameManager initialized");
   }
 
+  private void Update() {
+    // TODO state check (return if not playing)
+    
+    gameTimeSeconds += Time.deltaTime;
+
+    if (gameTimeSeconds >= gameLengthSeconds) {
+      // TODO check win/lose conditions
+      // TODO change state
+      // TODO activate cutscene
+    }
+  }
+
+  
+  // === Scene management ===
+  
+  
+  public Clock GetClock() {
+    return clockObject;
+  }
+
+  public GameObject GetDoor() {
+    return doorObject;
+  }
+  
+  public List<GameObject> GetLureObjects() {
+    return lureObjects;
+  }
+  
+  public List<GameObject> GetZombieObjects() {
+    return zombieObjects;
+  }
+  
+  public List<GameObject> GetGhostObjects() {
+    return ghostObjects;
+  }
+
+  public void RegisterLure(GameObject obj) {
+    lureObjects.Add(obj);
+  }
+  
+  public void RegisterZombie(GameObject obj) {
+    zombieObjects.Add(obj);
+  }
+  
+  public void RegisterGhost(GameObject obj) {
+    ghostObjects.Add(obj);
+  }
+
+  public void UnregisterLure(GameObject obj) {
+    lureObjects.Remove(obj);
+  }
+  
+  public void UnregisterZombie(GameObject obj) {
+    zombieObjects.Remove(obj);
+  }
+  
+  public void UnregisterGhost(GameObject obj) {
+    ghostObjects.Remove(obj);
+  }
+  
+  
+  // === State management ===
+  
+  
   public RoomType GetCurrentRoom() {
     return m_currentRoom;
   }
@@ -77,19 +166,11 @@ public class GameManager : MonoBehaviour {
 
   public void SetActiveTool(ToolType type) {
     m_activeTool = type;
-    // TODO transition
+    // TODO transition (?)
   }
   
   public float GetDoorHealth() {
     return m_doorHealth;
-  }
-
-  public float GetClockState() {
-    return m_clockState;
-  }
-
-  public void SetClockState(float state) {
-    m_clockState = state;
   }
   
   public float GetTimeTillVictory() {

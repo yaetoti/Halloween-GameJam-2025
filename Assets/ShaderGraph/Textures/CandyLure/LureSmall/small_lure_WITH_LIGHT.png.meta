@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      small_lure_WITH_LIGHT_0: -1614535414218518954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

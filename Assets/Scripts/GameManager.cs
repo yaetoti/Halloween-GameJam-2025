@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour {
     
     // Real initialization
 
-    m_currentRoom = RoomType.GARAGE;
+    m_currentRoom = RoomType.LIVING_ROOM;
     m_activeTool = ToolType.HAMMER;
     m_candyCount = 0;
     m_clockState = 0.0f;

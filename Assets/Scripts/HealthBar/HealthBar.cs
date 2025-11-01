@@ -1,33 +1,37 @@
+using System;
 using UnityEngine;
 
-public class HealthBar : MonoBehaviour
-{
-    private float m_health;
-    private float m_maxHealth;
-    public float Health
-    {
-        get { return m_health; }
-        set { m_health = value; UpdateHealthBar(); }
-    }
-    public float MaxHealth
-    {
-        get { return m_maxHealth; }
-        set { m_maxHealth = value; UpdateHealthBar(); }
-    }
+public class HealthBar : MonoBehaviour {
+  private static readonly int HEALTH = Shader.PropertyToID("_Health");
+  
+  public Health health;
+    
+  private Material m_healthBarMat;
 
-    private Material m_healthBarMat;
+  private void Awake() {
+    health.health.AddListener(OnHealthChanged);
+    health.maxHealth.AddListener(OnMaxHealthChanged);
+  }
 
-    private void OnEnable()
-    {
-        m_healthBarMat = transform.GetChild(0).
-                        GetComponent<SpriteRenderer>().material;
-                        
-        MaxHealth = MaxHealth == 0 ? 1 : MaxHealth;
-    }
+  private void OnDestroy() {
+    health.health.RemoveListener(OnHealthChanged);
+    health.maxHealth.RemoveListener(OnMaxHealthChanged);
+  }
 
-    private void UpdateHealthBar()
-    {
-        m_health = Mathf.Clamp(m_health, 0, m_maxHealth);
-        m_healthBarMat.SetFloat("_Health", Health / MaxHealth);
-    }
+  private void OnEnable() {
+    m_healthBarMat = transform.GetChild(0).GetComponent<SpriteRenderer>().material;
+  }
+
+  private void OnHealthChanged(int health) {
+    UpdateBar();
+  }
+  
+  private void OnMaxHealthChanged(int maxHealth) {
+    UpdateBar();
+  }
+  
+  private void UpdateBar() {
+    float healthValue = Mathf.Clamp(health.health.Value, 0, health.maxHealth.Value);
+    m_healthBarMat.SetFloat(HEALTH, healthValue / health.maxHealth.Value);
+  }
 }

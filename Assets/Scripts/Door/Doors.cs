@@ -5,11 +5,13 @@ public class Doors : MonoBehaviour
 {
     public Transform RoomA;
     public Transform RoomB;
+    private DoorAnimator m_animator;
     public int IsAbleSwitchRoom; // If equals zero than we able to switch rooms
 
     private void OnEnable()
     {
         IsAbleSwitchRoom = 0;
+        m_animator = GetComponent<DoorAnimator>();
     }
 
     public void SwitchRoom(Transform room, Transform passenger)
@@ -20,6 +22,8 @@ public class Doors : MonoBehaviour
         }
 
         GameManager.Instance.ToggleRoom();
+
+        m_animator.OpenDoorAnimation();
 
         Collider2D collider = passenger.GetComponent<Collider2D>();
         collider.enabled = false;

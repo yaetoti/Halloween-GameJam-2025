@@ -896,8 +896,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   clockCollider: {fileID: 791243640}
-  unwindingSpeed: 0.1
-  windingSpeed: 0.2
+  secondsToWind: 5
+  secondsToUnwind: 15
 --- !u!61 &791243640
 BoxCollider2D:
   m_ObjectHideFlags: 0

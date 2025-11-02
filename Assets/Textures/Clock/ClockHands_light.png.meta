@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: e73d3aa2498661d499193e7ff8daa6bd
+guid: e51ee7d8222e5be42bdf4613a571383b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8297970423067705627
-    second: garage_dark_0
+      213: 765347078808375606
+    second: ClockHands_light_0
+  - first:
+      213: -3332685653428019605
+    second: ClockHands_light_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,6 +100,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -113,23 +129,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: garage_dark_0
+      name: ClockHands_light_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1080
+        width: 16
+        height: 87
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5eef9506ddfa7dc80800000000000000
-      internalID: -8297970423067705627
+      spriteID: f4d738585d819d645943972fa17d6b44
+      internalID: -1637659179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClockHands_light_1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 0
+        width: 15
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4daa002abfc6e794589d13a212f19fee
+      internalID: 1426706079
       vertices: []
       indices: 
       edges: []
@@ -138,7 +176,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4488c043d90616b4197d8f45c1495b61
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +186,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      garage_dark_0: -8297970423067705627
+      ClockHands_light_0: -1637659179
+      ClockHands_light_1: 1426706079
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

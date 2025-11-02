@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7171150128282055285}
   - component: {fileID: 502169579151117686}
   - component: {fileID: 2151016211282084876}
+  - component: {fileID: 4881388910758075558}
   m_Layer: 0
   m_Name: GameZombe
   m_TagString: Untagged
@@ -178,6 +179,23 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &4881388910758075558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2728058934317250878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1444b26f631ea94883de5ab03c9d2d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 5950613237767986127}
+  i1: {fileID: -1052645464225236033, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
+  i2: {fileID: 2611215814755630886, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
+  w1: {fileID: -6933277864299866225, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
+  w2: {fileID: 6403456381478957942, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
 --- !u!1 &4443266592119286098
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +251,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8a6e72bdc3cd7684da7cafd09277dc40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -254,8 +272,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.07082228, g: 0.4433962, b: 0, a: 1}
+  m_Sprite: {fileID: -1052645464225236033, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

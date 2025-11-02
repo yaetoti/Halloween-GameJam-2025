@@ -2,15 +2,15 @@ using System;
 using UnityEngine;
 
 public class TestHealth : MonoBehaviour {
-  public Health health;
+  public HealthSystem healthSystem;
   public float timer;
 
   private void OnEnable() {
-    health.health.AddListener(OnHealthChanged);
+    healthSystem.health.AddListener(OnHealthChanged);
   }
 
   private void OnDisable() {
-    health.health.RemoveListener(OnHealthChanged);
+    healthSystem.health.RemoveListener(OnHealthChanged);
   }
   
   private void OnHealthChanged(int value) {
@@ -28,7 +28,7 @@ public class TestHealth : MonoBehaviour {
       Debug.Log("HIT!");
       
       timer -= 2.0f;
-      health.health.Value -= 2;
+      healthSystem.Health -= 2;
     }
   }
 }

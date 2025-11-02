@@ -7,7 +7,7 @@ public class CandyLure : MonoBehaviour
 {
     public SpriteRenderer LureSprite;
 
-    private Health m_health;
+    private HealthSystem m_healthSystem;
     //private float m_maxHealth;
     private int m_spriteIndex;
 
@@ -17,12 +17,12 @@ public class CandyLure : MonoBehaviour
     public Sprite Broken;
 
     private void Awake() {
-      m_health = GetComponent<Health>();
-      m_health.health.AddListener(OnHealthChanged);
+      m_healthSystem = GetComponent<HealthSystem>();
+      m_healthSystem.health.AddListener(OnHealthChanged);
     }
 
     private void OnDestroy() {
-      m_health.health.RemoveListener(OnHealthChanged);
+      m_healthSystem.health.RemoveListener(OnHealthChanged);
     }
 
     private void Start()
@@ -31,7 +31,7 @@ public class CandyLure : MonoBehaviour
     }
 
     public void Damage() {
-      m_health.health.Value--;
+      m_healthSystem.Health--;
     }
 
     private void OnHealthChanged(int health) {
@@ -42,7 +42,7 @@ public class CandyLure : MonoBehaviour
     }
 
     private float GetHealthPercent() {
-        return (float)m_health.health.Value / m_health.maxHealth.Value * 100.0f;
+        return (float)m_healthSystem.Health / m_healthSystem.Health * 100.0f;
     }
 
     private IEnumerator SetSpriteIndex()

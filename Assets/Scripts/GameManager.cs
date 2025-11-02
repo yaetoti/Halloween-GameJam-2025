@@ -9,8 +9,6 @@ public class GameManager : SceneSingleton<GameManager> {
   public float hammerRadius;
   // TODO: Will we need initial value? If so, create zombieSpawnRateInitial and change getter
   public float zombieSpawnRate; // TODO spawner is controlling it
-  public float initialDoorHealth; // TODO door is controlling it
-  public float gameLengthSeconds; // TODO clock is controlling it
 
   [SerializeField]
   private Clock clockObject;
@@ -19,39 +17,73 @@ public class GameManager : SceneSingleton<GameManager> {
 
   // State (initialization is in Initialize())
   public ObservableValue<int> CandyCount { get; private set; }
+  private HealthSystem m_doorHealthSystem;
   private GameState m_gameState;
   private RoomType m_currentRoom;
   private ToolType m_activeTool;
-  private float m_doorHealth; // TODO remove. We have a door gameObject
-  private float m_clockState; // TODO remove. We have clock gameObject
-  private float gameTimeSeconds;
-  
-  // Entities
-  
-  
-  // Door is just.. HealthBar, Health
-  // +entities arrays
-  // TODO Add entities: ghosts, zombies
-  
-  // Place LMB: in trigger, no overlaps, enough candies -> Add Lure at this position + Register
-  
-  // TODO InteractionManager (or player)
-  // TODO SpawnManager
 
   protected override void OnInitializeSingleton() {
     m_gameState = GameState.GAME;
     m_currentRoom = RoomType.LIVING_ROOM;
     m_activeTool = ToolType.HAMMER;
     CandyCount = new();
-    m_clockState = 0.0f;
-    m_doorHealth = initialDoorHealth;
-    gameTimeSeconds = 0.0f;
+    m_doorHealthSystem = doorObject.GetComponent<HealthSystem>();
     
     Debug.Log("GameManager initialized");
   }
 
+  private void Start() {
+    clockObject.TimeProgress.AddListener(OnTimeProgressChange);
+    clockObject.UnwindingProgress.AddListener(OnClockUnwindingChange);
+    m_doorHealthSystem.health.AddListener(OnDoorHealthChange);
+  }
+
+  protected override void OnDestroy() {
+    if (clockObject) {
+      clockObject.TimeProgress.RemoveListener(OnTimeProgressChange);
+      clockObject.UnwindingProgress.RemoveListener(OnClockUnwindingChange);
+    }
+  }
+
+  private void OnTimeProgressChange(float progress) {
+    if (progress >= 1.0f) {
+      Debug.Log("[END]: Time is out!");
+      // TODO Add ApplicationManager data that will appear in win/lose
+      
+      // TODO win
+      // TODO change state
+      // TODO activate cutscene
+    }
+  }
+
+  private void OnClockUnwindingChange(float progress) {
+    // The clock is broken
+    if (progress >= 1.0f) {
+      Debug.Log("[END]: The clock is broken!");
+      
+      // TODO Add ApplicationManager data that will appear in win/lose
+      // TODO lose
+      // TODO change state
+      // TODO activate cutscene
+    }
+  }
+
+  private void OnDoorHealthChange(int health) {
+    if (health <= 0) {
+      Debug.Log("[END]: The door is broken!");
+      
+      // TODO Add ApplicationManager data that will appear in win/lose
+      // TODO lose
+      // TODO change state
+      // TODO activate cutscene
+    }
+  }
+
   private void Update() {
-    // TODO state check (return if not playing)
+    // No item changing if not in the game
+    if (m_gameState != GameState.GAME) {
+      return;
+    }
 
     if (Input.GetKeyDown(KeyCode.Alpha1)) {
       m_activeTool = ToolType.HAMMER;
@@ -61,18 +93,6 @@ public class GameManager : SceneSingleton<GameManager> {
     }
     if (Input.GetKeyDown(KeyCode.Alpha3)) {
       m_activeTool = ToolType.LURE_BIG;
-    }
-
-    //Debug.Log("Active tool: " + m_activeTool);
-    
-    // TODO REMOVE
-    
-    gameTimeSeconds += Time.deltaTime;
-
-    if (gameTimeSeconds >= gameLengthSeconds) {
-      // TODO check win/lose conditions
-      // TODO change state
-      // TODO activate cutscene
     }
   }
 
@@ -86,6 +106,10 @@ public class GameManager : SceneSingleton<GameManager> {
 
   public GameObject GetDoor() {
     return doorObject;
+  }
+  
+  public HealthSystem GetDoorHealth() {
+    return m_doorHealthSystem;
   }
   
   
@@ -115,24 +139,6 @@ public class GameManager : SceneSingleton<GameManager> {
   public void SetActiveTool(ToolType type) {
     m_activeTool = type;
     // TODO transition (?)
-  }
-  
-  public float GetDoorHealth() {
-    return m_doorHealth;
-  }
-  
-  public float GetTimeTillVictory() {
-    return gameLengthSeconds - gameTimeSeconds;
-  }
-
-  public int GetGhostCountLivingRoom() {
-    // TODO implement. array of gameobjects? where will we add them?
-    return 0;
-  }
-  
-  public int GetGhostCountGarage() {
-    // TODO implement. array of gameobjects?
-    return 0;
   }
 
   public float GetLureRadius() {

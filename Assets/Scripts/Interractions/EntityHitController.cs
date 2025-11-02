@@ -29,15 +29,15 @@ public class EntityHitController : MonoBehaviour {
 
       Zombie zombieComponent = hit.collider.GetComponent<Zombie>();
       if (zombieComponent && GameManager.Instance.GetCurrentRoom() == RoomType.GARAGE) {
-        Health healthComponent = hit.collider.GetComponent<Health>();
-        healthComponent.health.Value -= 1;
+        HealthSystem healthSystemComponent = hit.collider.GetComponent<HealthSystem>();
+        healthSystemComponent.health.Value -= 1;
         continue;
       }
       
       Ghost ghostComponent = hit.collider.GetComponent<Ghost>();
       if (ghostComponent && GameManager.Instance.GetCurrentRoom() == RoomType.LIVING_ROOM) {
-        Health healthComponent = hit.collider.GetComponent<Health>();
-        healthComponent.health.Value -= 1;
+        HealthSystem healthSystemComponent = hit.collider.GetComponent<HealthSystem>();
+        healthSystemComponent.health.Value -= 1;
         
         // TODO NOT HERE, WE CAN'T KNOW IF WE KILLED HIM. WELL, WE CAN, BUT IN A FUCKED UP WAY OF JUST CHECKING HEALTH ANS THAT IS FUCKING STUPID
         

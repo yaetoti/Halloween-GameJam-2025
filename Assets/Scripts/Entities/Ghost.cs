@@ -1,15 +1,15 @@
 using UnityEngine;
 
 public class Ghost : MonoBehaviour {
-  private Health m_health;
+  private HealthSystem m_healthSystem;
 
   private void Awake() {
-    m_health = GetComponent<Health>();
-    m_health.health.AddListener(OnHealthChange);
+    m_healthSystem = GetComponent<HealthSystem>();
+    m_healthSystem.health.AddListener(OnHealthChange);
   }
 
   private void OnDestroy() {
-    m_health.health.RemoveListener(OnHealthChange);
+    m_healthSystem.health.RemoveListener(OnHealthChange);
   }
 
   private void Start() {

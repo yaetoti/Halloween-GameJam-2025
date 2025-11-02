@@ -71,9 +71,9 @@ public class Clock : MonoBehaviour {
     
     // === Update state ===
     // Just in case
-    if (CurrentClockState.Value == ClockState.BROKEN) {
-      return;
-    }
+    // if (CurrentClockState.Value == ClockState.BROKEN) {
+    //   return;
+    // }
 
     // --- Update time ---
     TimeProgress.Value += Time.deltaTime / gameTimeSeconds;
@@ -103,7 +103,6 @@ public class Clock : MonoBehaviour {
       if (progress >= 1.0f) {
         progress = 1.0f;
         CurrentClockState.Value = ClockState.BROKEN;
-        Debug.Log("This clock is ffocking broken!");
       }
     }
     

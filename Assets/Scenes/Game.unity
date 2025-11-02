@@ -307,6 +307,68 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 8.7}
   m_EdgeRadius: 0
+--- !u!1001 &306891252
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2994063584654256591, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+      propertyPath: m_Name
+      value: DoorEntity
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476141585480944382, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476141585480944382, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476141585480944382, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476141585480944382, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476141585480944382, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476141585480944382, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476141585480944382, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476141585480944382, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476141585480944382, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476141585480944382, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+--- !u!1 &306891253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2994063584654256591, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+  m_PrefabInstance: {fileID: 306891252}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &328200877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,6 +1153,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &813458580 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2403574755928211800, guid: 420f132b777034c41b537895ef65a0b3, type: 3}
+  m_PrefabInstance: {fileID: 883776923}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f984f397539a44dea84a475555bbe8d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &823969027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,6 +1383,14 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 542746561}
+    - target: {fileID: 2403574755928211800, guid: 420f132b777034c41b537895ef65a0b3, type: 3}
+      propertyPath: gameTimeSeconds
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2403574755928211800, guid: 420f132b777034c41b537895ef65a0b3, type: 3}
+      propertyPath: secondsToUnwind
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3515015539644364177, guid: 420f132b777034c41b537895ef65a0b3, type: 3}
       propertyPath: m_Name
       value: Clock
@@ -1820,8 +1901,8 @@ MonoBehaviour:
   lureRadius: 0
   hammerRadius: 0
   zombieSpawnRate: 0
-  initialDoorHealth: 0
-  gameLengthSeconds: 0
+  clockObject: {fileID: 813458580}
+  doorObject: {fileID: 306891253}
 --- !u!4 &1924648719
 Transform:
   m_ObjectHideFlags: 0
@@ -1984,3 +2065,4 @@ SceneRoots:
   - {fileID: 5837798599323339848}
   - {fileID: 494585897}
   - {fileID: 883776923}
+  - {fileID: 306891252}

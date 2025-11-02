@@ -71,9 +71,8 @@ public class Ghost : MonoBehaviour {
       float distance = direction.magnitude;
       
       // Rotate towards the target
-      // TODO remove THE FUCK OUT OF HERE
-      float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-      rendererTransform.rotation = Quaternion.Euler(0, 0, angle);
+      // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+      // rendererTransform.rotation = Quaternion.Euler(0, 0, angle);
       
       // Check stopping condition
       if (distance <= stopDistance) {

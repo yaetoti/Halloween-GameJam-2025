@@ -67,8 +67,8 @@ public class Zombie : MonoBehaviour {
       float distance = direction.magnitude;
       
       // Rotate towards the target
-      float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-      rendererTransform.rotation = Quaternion.Euler(0, 0, angle);
+      // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+      // rendererTransform.rotation = Quaternion.Euler(0, 0, angle);
       
       // Check breaking condition
       if (distance <= stopDistance) {

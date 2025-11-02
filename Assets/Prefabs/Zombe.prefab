@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4442307316969083268}
   - component: {fileID: 190353808504090098}
+  - component: {fileID: 1774710838008512466}
   - component: {fileID: 5573946382169839917}
   - component: {fileID: 8819303568796708765}
-  - component: {fileID: 1774710838008512466}
   m_Layer: 0
   m_Name: Zombe
   m_TagString: Untagged
@@ -52,6 +52,19 @@ MonoBehaviour:
     value: 1
   maxHealth:
     value: 1
+--- !u!114 &1774710838008512466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3736654160546861113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e9bbd0d51d2c6c47ae341d924141a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterPoint: {fileID: 0}
 --- !u!61 &5573946382169839917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125,18 +138,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &1774710838008512466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3736654160546861113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e9bbd0d51d2c6c47ae341d924141a04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8006034925673428641
 GameObject:
   m_ObjectHideFlags: 0

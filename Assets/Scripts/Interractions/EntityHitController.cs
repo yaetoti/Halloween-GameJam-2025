@@ -31,6 +31,12 @@ public class EntityHitController : MonoBehaviour {
       if (zombieComponent) {
         HealthSystem healthSystemComponent = hit.collider.GetComponent<HealthSystem>();
         healthSystemComponent.health.Value -= 1;
+
+        // GIVE US A SIGN
+        if (healthSystemComponent.Health <= 0) {
+          GhostSpawnManager.Instance.SpawnGhost();
+        }
+        
         break;
       }
       
@@ -39,10 +45,11 @@ public class EntityHitController : MonoBehaviour {
         HealthSystem healthSystemComponent = hit.collider.GetComponent<HealthSystem>();
         healthSystemComponent.health.Value -= 1;
         
-        // TODO NOT HERE, WE CAN'T KNOW IF WE KILLED HIM. WELL, WE CAN, BUT IN A FUCKED UP WAY OF JUST CHECKING HEALTH ANS THAT IS FUCKING STUPID
+        if (healthSystemComponent.Health <= 0) {
+          // Give a candy =)
+          GameManager.Instance.CandyCount.Value += 1;
+        }
         
-        // Give candy =)
-        GameManager.Instance.CandyCount.Value += 1;
         break;
       }
     }

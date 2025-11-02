@@ -2,20 +2,18 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// What data?
+// - Get target location
+  
+// How to get door location? AHH, we need a gamemanager
+// How to get lure location? AHH WE NEED A SPAWNER AHAHAHHAH "ahh" ahh energy
+
 public class Zombie : MonoBehaviour {
   public enum State {
     IDLE,
     PURSUING,
     BREAKING,
   }
-  
-  // What data?
-  // - Get target location
-  
-  // How to get door location? AHH, we need a gamemanager
-  // How to get lure location? AHH WE NEED A SPAWNER AHAHAHHAH "ahh" ahh energy
-  
-  
   
   // Params
   [SerializeField]

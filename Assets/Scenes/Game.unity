@@ -1306,9 +1306,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2403574755928211800, guid: 420f132b777034c41b537895ef65a0b3, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 542746561}
     - target: {fileID: 3515015539644364177, guid: 420f132b777034c41b537895ef65a0b3, type: 3}
       propertyPath: m_Name
       value: Clock
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351258669370122161, guid: 420f132b777034c41b537895ef65a0b3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8455212294310018423, guid: 420f132b777034c41b537895ef65a0b3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1324,7 +1332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8455212294310018423, guid: 420f132b777034c41b537895ef65a0b3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8455212294310018423, guid: 420f132b777034c41b537895ef65a0b3, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1336,7 +1344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8455212294310018423, guid: 420f132b777034c41b537895ef65a0b3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.38268343
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8455212294310018423, guid: 420f132b777034c41b537895ef65a0b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1348,7 +1356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8455212294310018423, guid: 420f132b777034c41b537895ef65a0b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

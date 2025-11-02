@@ -1,22 +1,13 @@
 fileFormatVersion: 2
-guid: 4ec7f8d8c98b55c4db5d2f65cbb71984
+guid: e51ee7d8222e5be42bdf4613a571383b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8820953333145277305
-    second: DoorGarage_dark_1x6_0
+      213: 765347078808375606
+    second: ClockHands_light_0
   - first:
-      213: -8947275248690816230
-    second: DoorGarage_dark_1x6_1
-  - first:
-      213: -6455982087694437545
-    second: DoorGarage_dark_1x6_2
-  - first:
-      213: -1923266517397566646
-    second: DoorGarage_dark_1x6_3
-  - first:
-      213: -5721397016594726902
-    second: DoorGarage_dark_1x6_4
+      213: -3332685653428019605
+    second: ClockHands_light_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -138,111 +129,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DoorGarage_dark_1x6_0
+      name: ClockHands_light_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 7
-        width: 100
-        height: 90
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9731c6232525a6a70800000000000000
-      internalID: 8820953333145277305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DoorGarage_dark_1x6_1
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 7
-        width: 101
-        height: 90
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a1b9326e094e4d380800000000000000
-      internalID: -8947275248690816230
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DoorGarage_dark_1x6_2
-      rect:
-        serializedVersion: 2
-        x: 214
         y: 0
-        width: 110
-        height: 336
+        width: 16
+        height: 87
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 75330ba1f7eb766a0800000000000000
-      internalID: -6455982087694437545
+      spriteID: f4d738585d819d645943972fa17d6b44
+      internalID: -1637659179
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DoorGarage_dark_1x6_3
+      name: ClockHands_light_1
       rect:
         serializedVersion: 2
-        x: 323
+        x: 17
         y: 0
-        width: 109
-        height: 336
+        width: 15
+        height: 87
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a4b8d16da4f2f45e0800000000000000
-      internalID: -1923266517397566646
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DoorGarage_dark_1x6_4
-      rect:
-        serializedVersion: 2
-        x: 431
-        y: 0
-        width: 109
-        height: 336
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a0044e60ab38990b0800000000000000
-      internalID: -5721397016594726902
+      spriteID: 4daa002abfc6e794589d13a212f19fee
+      internalID: 1426706079
       vertices: []
       indices: 
       edges: []
@@ -251,7 +176,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4488c043d90616b4197d8f45c1495b61
     internalID: 0
     vertices: []
     indices: 
@@ -260,7 +185,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ClockHands_light_0: -1637659179
+      ClockHands_light_1: 1426706079
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

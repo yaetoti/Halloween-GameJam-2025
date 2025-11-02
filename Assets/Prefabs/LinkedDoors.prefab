@@ -243,7 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteRendererA: {fileID: 8154303517044184754}
   SpriteRendererB: {fileID: 1338852779137334670}
-  AnimationSpeed: 0.5
+  AnimationSpeed: 1.1
   damage: 0
   ac0: {fileID: -721313365, guid: a603869973e864a4f9ea0e68343c4f59, type: 3}
   ac1: {fileID: -131802403, guid: a603869973e864a4f9ea0e68343c4f59, type: 3}

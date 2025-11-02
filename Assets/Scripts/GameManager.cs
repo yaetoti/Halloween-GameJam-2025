@@ -64,6 +64,19 @@ public class GameManager : SceneSingleton<GameManager> {
   private void SetCandyCountText(int count)
   {
     candyCount.text = count.ToString();
+
+    bigLure.material.SetFloat("_BW", 0);
+    smallLure.material.SetFloat("_BW", 0);
+
+    switch (count)
+    {
+      case >= LurePlacementController.BIG_LURE_PRICE:
+        bigLure.material.SetFloat("_BW", 1);
+        break;
+      case >= LurePlacementController.SMALL_LURE_PRICE:
+        smallLure.material.SetFloat("_BW", 1);
+        break;
+    }
   }
 
   protected override void OnDestroy() {

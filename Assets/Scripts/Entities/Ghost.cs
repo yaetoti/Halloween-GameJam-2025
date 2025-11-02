@@ -1,6 +1,13 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Add UI to my scene
+
+// Some ones are not moving
+// Give random speed
+// Increase default speed
+
+
 public class Ghost : MonoBehaviour {
   public enum State {
     IDLE,
@@ -11,7 +18,9 @@ public class Ghost : MonoBehaviour {
   [SerializeField]
   private Transform rendererTransform;
   [SerializeField]
-  private float moveSpeed = 1.0f;
+  private float moveSpeedMin = 1.0f;
+  [SerializeField]
+  private float moveSpeedMax = 3.0f;
   [SerializeField]
   private float stopDistance = 0.01f;
   [SerializeField]
@@ -30,6 +39,7 @@ public class Ghost : MonoBehaviour {
   private Vector3? m_targetPosition;
   private float m_standingTimeSeconds;
   private float m_standingProgress;
+  private float m_moveSpeed;
 
   public State CurrentState {
     get => state.Value;
@@ -45,6 +55,7 @@ public class Ghost : MonoBehaviour {
     m_healthSystem = GetComponent<HealthSystem>();
     m_healthSystem.health.AddListener(OnHealthChange);
     
+    m_moveSpeed = Random.Range(moveSpeedMin, moveSpeedMax);
     state = new(State.IDLE);
     UpdateWaitingTime();
   }
@@ -109,7 +120,7 @@ public class Ghost : MonoBehaviour {
       direction.Normalize();
 
       // Steering behaviour
-      Vector2 desiredVelocity = direction * moveSpeed;
+      Vector2 desiredVelocity = direction * m_moveSpeed;
       Vector2 steering = desiredVelocity - m_rigidbody.linearVelocity;
 
       m_rigidbody.AddForce(steering, ForceMode2D.Force);
@@ -132,11 +143,7 @@ public class Ghost : MonoBehaviour {
   }
 
   private void UpdatePosition() {
-    // TODO Gen random pos from GhostSpawnManager
-
-    m_targetPosition = new();
-
-    // m_targetPosition = ...
+    m_targetPosition = GhostSpawnManager.Instance.GetRandomPosition();
 
     // Random offset
     float randomX = Random.Range(-targetOffset, targetOffset);

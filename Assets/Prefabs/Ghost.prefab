@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7669109453014559095}
   - component: {fileID: 2847189081110725282}
   - component: {fileID: 8483848608071315751}
+  - component: {fileID: 1348000799110800121}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -161,6 +162,23 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1348000799110800121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6824783495652400492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1444b26f631ea94883de5ab03c9d2d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 5744149923113076076}
+  i1: {fileID: 5546853551783847147, guid: 51d6d60c62c4e5f4eb592a4ed898a23b, type: 3}
+  i2: {fileID: -355287653575848143, guid: 51d6d60c62c4e5f4eb592a4ed898a23b, type: 3}
+  w1: {fileID: 5546853551783847147, guid: 51d6d60c62c4e5f4eb592a4ed898a23b, type: 3}
+  w2: {fileID: -355287653575848143, guid: 51d6d60c62c4e5f4eb592a4ed898a23b, type: 3}
 --- !u!1 &7760182069983192253
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +234,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 86398b4f554895540a071db8c663d70f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -236,9 +254,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5424528, g: 0.7669083, b: 1, a: 1}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 6262256389378693309, guid: 58f7bfe11f4aa7c4596f194865fb1212, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

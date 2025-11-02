@@ -111,6 +111,10 @@ public class Zombie : MonoBehaviour {
     // }
     
     // Move if not close enough
+    if (CurrentState != State.PURSUING) {
+      m_rigidbody.linearVelocity = new();
+    }
+    
     if (CurrentState == State.PURSUING) {
       Vector2 direction = m_targetPosition!.Value - transform.position;
       float distance = direction.magnitude;

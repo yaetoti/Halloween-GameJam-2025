@@ -26,7 +26,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.055439, y: -2.914541, z: -0.0075414157}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 629043806437307991}
@@ -120,6 +120,10 @@ PrefabInstance:
       propertyPath: AlmostBroken
       value: 
       objectReference: {fileID: -4527137749348967643, guid: 033dccebaf8d10e43a618471c1bb16a3, type: 3}
+    - target: {fileID: 5427674894647156311, guid: 13dd807c37e50e6479b53de602b28403, type: 3}
+      propertyPath: healthSystem
+      value: 
+      objectReference: {fileID: 9142009756139425819}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -135,3 +139,14 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 3884100073078841385, guid: 13dd807c37e50e6479b53de602b28403, type: 3}
   m_PrefabInstance: {fileID: 4063881290310978598}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9142009756139425819 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5096737700129479741, guid: 13dd807c37e50e6479b53de602b28403, type: 3}
+  m_PrefabInstance: {fileID: 4063881290310978598}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07cdd2ad1e504cb2892155dc60ac3f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

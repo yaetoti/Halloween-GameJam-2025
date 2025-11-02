@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TestZombieAI : MonoBehaviour {
+  public List<Transform> lures; 
+  
   public Transform targetTransform;
   public HealthSystem targetHealth;
   
@@ -12,6 +15,11 @@ public class TestZombieAI : MonoBehaviour {
   }
 
   private void Start() {
-    m_zombie.SetTarget(targetTransform?.position, targetHealth);
+    //m_zombie.SetTarget(targetTransform?.position, targetHealth);
+    
+    // Add test lures
+    foreach (var lure in lures) {
+      //SpawnManager.Instance.RegisterLure(lure.gameObject);
+    }
   }
 }

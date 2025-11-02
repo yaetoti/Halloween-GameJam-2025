@@ -20,14 +20,15 @@ public class CandyLure : MonoBehaviour
       m_healthSystem = GetComponent<HealthSystem>();
       m_healthSystem.health.AddListener(OnHealthChanged);
     }
+    
+    private void Start() {
+      SpawnManager.Instance.RegisterLure(gameObject.transform.parent.gameObject);
+      StartCoroutine(SetSpriteIndex());
+    }
 
     private void OnDestroy() {
       m_healthSystem.health.RemoveListener(OnHealthChanged);
-    }
-
-    private void Start()
-    {
-        StartCoroutine(SetSpriteIndex());
+      SpawnManager.Instance.UnregisterLure(gameObject.transform.parent.gameObject);
     }
 
     public void Damage() {

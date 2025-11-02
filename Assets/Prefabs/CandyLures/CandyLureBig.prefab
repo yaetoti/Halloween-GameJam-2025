@@ -136,6 +136,10 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 348562189121259318}
+    - target: {fileID: 5427674894647156311, guid: 13dd807c37e50e6479b53de602b28403, type: 3}
+      propertyPath: healthSystem
+      value: 
+      objectReference: {fileID: 348562189121259318}
     - target: {fileID: 5545603217143383459, guid: 13dd807c37e50e6479b53de602b28403, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.169

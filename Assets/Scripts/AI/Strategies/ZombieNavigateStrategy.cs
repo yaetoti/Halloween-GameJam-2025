@@ -8,6 +8,8 @@ public class ZombieNavigateStrategy : BrainStrategy {
 
   public override void OnStart() {
     base.OnStart();
+
+    Debug.Log("Navigate Start");
   }
 
   public override void OnStop() {

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Zombie : MonoBehaviour {
@@ -32,17 +33,27 @@ public class Zombie : MonoBehaviour {
   private Rigidbody2D m_rigidbody;
   private HealthSystem m_healthSystem;
 
+  [DoNotSerialize]
+  public ObservableValue<State> state;
   private Vector3? m_targetPosition;
   private HealthSystem m_targetHealth;
-  private State m_state;
   private float m_breakingProgress;
+
+  public State CurrentState {
+    get => state.Value;
+    set {
+      if (value != state.Value) {
+        state.Value = value;
+      }
+    }
+  }
 
   private void Awake() {
     m_rigidbody = GetComponent<Rigidbody2D>();
     m_healthSystem = GetComponent<HealthSystem>();
     m_healthSystem.health.AddListener(OnHealthChange);
     
-    m_state = State.IDLE;
+    state = new(State.IDLE);
   }
 
   private void OnDestroy() {
@@ -51,7 +62,7 @@ public class Zombie : MonoBehaviour {
 
   private void Update() {
     // Come close, start breaking
-    if (m_state == State.PURSUING) {
+    if (CurrentState == State.PURSUING) {
       Vector2 direction = m_targetPosition!.Value - transform.position;
       float distance = direction.magnitude;
       
@@ -61,7 +72,7 @@ public class Zombie : MonoBehaviour {
       
       // Check breaking condition
       if (distance <= stopDistance) {
-        m_state = State.BREAKING;
+        CurrentState = State.BREAKING;
         m_breakingProgress = 0.0f;
         // TODO inertia
         m_rigidbody.linearVelocity = new();
@@ -69,7 +80,7 @@ public class Zombie : MonoBehaviour {
     }
 
     // Deal damage once in a while
-    if (m_state == State.BREAKING) {
+    if (CurrentState == State.BREAKING) {
       m_breakingProgress += Time.deltaTime / secondsToBreak;
       
       // Deal damage
@@ -100,7 +111,7 @@ public class Zombie : MonoBehaviour {
     // }
     
     // Move if not close enough
-    if (m_state == State.PURSUING) {
+    if (CurrentState == State.PURSUING) {
       Vector2 direction = m_targetPosition!.Value - transform.position;
       float distance = direction.magnitude;
 
@@ -133,11 +144,11 @@ public class Zombie : MonoBehaviour {
 
   public void SetTarget(Vector3? targetPosition = null, HealthSystem targetHealth = null) {
     if (targetPosition is null) {
-      m_state = State.IDLE;
+      CurrentState = State.IDLE;
       return;
     }
     
-    m_state = State.PURSUING;
+    CurrentState = State.PURSUING;
     m_targetPosition = targetPosition;
     m_targetHealth = targetHealth;
   }

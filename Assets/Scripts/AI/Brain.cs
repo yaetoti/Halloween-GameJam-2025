@@ -14,6 +14,10 @@ public class Brain : MonoBehaviour {
   private BrainStrategy m_activeStrategy;
 
   private void Awake() {
+
+  }
+
+  private void Start() {
     foreach (var entry in m_initialStrategies) {
       AddStrategy(entry.name, entry.strategy);
     }

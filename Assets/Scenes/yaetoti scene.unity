@@ -181,6 +181,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f71458e59eaf845815e16db80724f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &92945228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 92945229}
+  m_Layer: 0
+  m_Name: ZombieEnterMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &92945229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92945228}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.65, y: -0.9, z: 0.00000010617441}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &184631038 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3736654160546861113, guid: 3cb7bba3d93872d4e8d7fe4f1c089f8c, type: 3}
@@ -193,13 +224,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 184631038}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 430d47fee0354b25a3795e6a4a5aff1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 2069368674}
   targetHealth: {fileID: 2069368672}
+--- !u!114 &184631052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184631038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bbc6b30eac4e9d853ccaa253def698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterMarkerX: {fileID: 92945229}
 --- !u!1 &257182663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,11 +2006,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4442307316969083268, guid: 3cb7bba3d93872d4e8d7fe4f1c089f8c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.02
+      value: 10.36
       objectReference: {fileID: 0}
     - target: {fileID: 4442307316969083268, guid: 3cb7bba3d93872d4e8d7fe4f1c089f8c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.38
+      value: -2.76
       objectReference: {fileID: 0}
     - target: {fileID: 4442307316969083268, guid: 3cb7bba3d93872d4e8d7fe4f1c089f8c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2030,6 +2074,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3736654160546861113, guid: 3cb7bba3d93872d4e8d7fe4f1c089f8c, type: 3}
       insertIndex: 4
+      addedObject: {fileID: 184631052}
+    - targetCorrespondingSourceObject: {fileID: 3736654160546861113, guid: 3cb7bba3d93872d4e8d7fe4f1c089f8c, type: 3}
+      insertIndex: 5
       addedObject: {fileID: 184631045}
   m_SourcePrefab: {fileID: 100100000, guid: 3cb7bba3d93872d4e8d7fe4f1c089f8c, type: 3}
 --- !u!1001 &7792674443049842333
@@ -2099,3 +2146,4 @@ SceneRoots:
   - {fileID: 5918875740207794048}
   - {fileID: 1595862689524929067}
   - {fileID: 7792674443049842333}
+  - {fileID: 92945229}

@@ -33,6 +33,7 @@ public class GameManager : SceneSingleton<GameManager> {
   private Image uiClock;
 
   [Space(10)]
+  [SerializeField]
   private TMPro.TextMeshProUGUI candyCount;
 
   // State (initialization is in Initialize())

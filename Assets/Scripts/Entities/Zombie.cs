@@ -63,6 +63,8 @@ public class Zombie : MonoBehaviour {
       if (distance <= stopDistance) {
         m_state = State.BREAKING;
         m_breakingProgress = 0.0f;
+        // TODO inertia
+        m_rigidbody.linearVelocity = new();
       }
     }
 
@@ -85,16 +87,36 @@ public class Zombie : MonoBehaviour {
 
   private void FixedUpdate() {
     // Move if not close enough
+    // if (m_state == State.PURSUING) {
+    //   Vector2 direction = m_targetPosition!.Value - transform.position;
+    //   float distance = direction.magnitude;
+    //   // Do not overshoot
+    //   float desiredSpeed = Mathf.Min(distance, moveSpeed);
+    //   
+    //   // Preform movement
+    //   var damping = m_rigidbody.linearVelocity;
+    //   var impulse = direction.normalized * desiredSpeed - damping;
+    //   m_rigidbody.AddForce(impulse, ForceMode2D.Impulse);
+    // }
+    
+    // Move if not close enough
     if (m_state == State.PURSUING) {
       Vector2 direction = m_targetPosition!.Value - transform.position;
       float distance = direction.magnitude;
-      // Do not overshoot
-      float desiredSpeed = Mathf.Min(distance, moveSpeed);
-      
-      // Preform movement
-      var damping = m_rigidbody.linearVelocity;
-      var impulse = direction * desiredSpeed - damping;
-      m_rigidbody.AddForce(impulse, ForceMode2D.Impulse);
+
+      // If close enough, stop moving
+      if (distance < stopDistance) {
+        m_rigidbody.linearVelocity = Vector2.zero;
+        return;
+      }
+
+      direction.Normalize();
+
+      // Steering behaviour
+      Vector2 desiredVelocity = direction * moveSpeed;
+      Vector2 steering = desiredVelocity - m_rigidbody.linearVelocity;
+
+      m_rigidbody.AddForce(steering, ForceMode2D.Force);
     }
   }
 

@@ -2,6 +2,9 @@
 using UnityEngine;
 
 public class LurePlacementController : MonoBehaviour {
+  public static readonly int SMALL_LURE_PRICE = 5;
+  public static readonly int BIG_LURE_PRICE = 10;
+  
   public Camera mainCamera;
   public Collider2D placementCollider;
   public GameObject smallLurePrefab;
@@ -44,16 +47,27 @@ public class LurePlacementController : MonoBehaviour {
     
     if (GameManager.Instance.GetActiveTool() == ToolType.LURE_SMALL) {
       prefab = smallLurePrefab;
+      if (GameManager.Instance.CandyCount.Value < SMALL_LURE_PRICE) {
+        return;
+      }
+
+      GameManager.Instance.CandyCount.Value -= SMALL_LURE_PRICE;
     }
     
     if (GameManager.Instance.GetActiveTool() == ToolType.LURE_BIG) {
       prefab = bigLurePrefab;
+      
+      if (GameManager.Instance.CandyCount.Value < BIG_LURE_PRICE) {
+        return;
+      }
+
+      GameManager.Instance.CandyCount.Value -= BIG_LURE_PRICE;
     }
 
     if (prefab is not null) {
       prefab.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = m_lureCounter;
       var lureObject = Instantiate(prefab, mousePosWorld, Quaternion.identity);
-      EntityManager.Instance.RegisterLure(lureObject);
+      //EntityManager.Instance.RegisterLure(lureObject);
       m_lureCounter++;
     }
   }

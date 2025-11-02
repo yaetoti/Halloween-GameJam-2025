@@ -29,6 +29,8 @@ public class Zombie : MonoBehaviour {
   [SerializeField]
   private int damage = 1;
 
+  public float targetOffset = 0.1f;
+
   // State
   private Rigidbody2D m_rigidbody;
   private HealthSystem m_healthSystem;
@@ -153,7 +155,11 @@ public class Zombie : MonoBehaviour {
     }
     
     CurrentState = State.PURSUING;
-    m_targetPosition = targetPosition;
+    
+    // Random offset
+    float randomX = UnityEngine.Random.Range(-targetOffset, targetOffset);
+    float randomY = UnityEngine.Random.Range(-targetOffset, targetOffset);
+    m_targetPosition = targetPosition.Value + new Vector3(randomX, randomY, 0);
     m_targetHealth = targetHealth;
   }
 }

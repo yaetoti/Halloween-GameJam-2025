@@ -55,6 +55,19 @@ public class Clock : MonoBehaviour {
   // [0-1] Game time progress. From 2:00 to 5:00
   public ObservableValue<float> timeProgress = new();
 
+  [Space(10)]
+
+  [SerializeField]
+  private SpriteRenderer sprite;
+  [Space(10)]
+
+  [SerializeField]
+  private Sprite fullClock;
+  [SerializeField]
+  private Sprite damagedClock;
+  [SerializeField]
+  private Sprite destroyedClock;
+  
 
   public float UnwindingProgress {
     get => unwindingProgress.Value;
@@ -134,8 +147,9 @@ public class Clock : MonoBehaviour {
     hourArrowTransform.rotation = Quaternion.Euler(0.0f, 0.0f, clockData.hoursRotationZ);
     minuteArrowTransform.rotation = Quaternion.Euler(0.0f, 0.0f, clockData.minutesRotationZ);
   }
-  
-  public ClockData GetClockData() {
+
+  public ClockData GetClockData()
+  {
     int duration = endTimeMinutes - startTimeMinutes;
     int currentTime = startTimeMinutes + (int)(duration * TimeProgress);
     int hours = currentTime / 60;
@@ -145,12 +159,29 @@ public class Clock : MonoBehaviour {
     // Clockwise - negative Z
     float hoursRotationZ = displayedHours / 12.0f * -360.0f;
     float minutesRotationZ = minutes / 60.0f * -360.0f;
-    
-    return new() {
+
+    return new()
+    {
       hours = displayedHours,
       minutes = minutes,
       hoursRotationZ = hoursRotationZ,
       minutesRotationZ = minutesRotationZ
     };
   }
+
+    void FixedUpdate()
+    {
+    switch (UnwindingProgress)
+      {
+      case > .75f:
+        sprite.sprite = destroyedClock;
+        break;
+      case > .4f:
+        sprite.sprite = damagedClock;
+        break;
+      case > 0:
+        sprite.sprite = fullClock;
+        break;
+      }
+    }
 }

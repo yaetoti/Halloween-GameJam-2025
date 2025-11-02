@@ -22,23 +22,26 @@ public class CandyLure : MonoBehaviour
     }
     
     private void Start() {
-      EntityManager.Instance.RegisterLure(gameObject.transform.parent.gameObject);
+      EntityManager.Instance.RegisterLure(transform.parent.gameObject);
       StartCoroutine(SetSpriteIndex());
     }
 
     private void OnDestroy() {
       m_healthSystem?.health.RemoveListener(OnHealthChanged);
-      EntityManager.Instance?.UnregisterLure(gameObject.transform.parent.gameObject);
+      EntityManager.Instance?.UnregisterLure(transform.parent.gameObject);
     }
 
     public void Damage() {
       m_healthSystem.Health--;
     }
 
+    private void Update() {
+    }
+
     private void OnHealthChanged(int health) {
       if (health == 0) {
         // DIE MOTHERFUCKER DIE MOTHERFUCKER DIEEEEEEEEEEEE
-        Destroy(transform.parent.gameObject);
+        DestroyImmediate(transform.parent.gameObject);
       }
     }
 

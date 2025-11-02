@@ -57,6 +57,7 @@ public class GameManager : SceneSingleton<GameManager> {
     clockObject.timeProgress.AddListener(OnTimeProgressChange);
     clockObject.unwindingProgress.AddListener(OnClockUnwindingChange);
     m_doorHealthSystem.health.AddListener(OnDoorHealthChange);
+    candyCount.text = CandyCount.Value.ToString();
     CandyCount.AddListener(SetCandyCountText);
   }
 

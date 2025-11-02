@@ -41,7 +41,7 @@ public class CandyLure : MonoBehaviour
     private void OnHealthChanged(int health) {
       if (health == 0) {
         // DIE MOTHERFUCKER DIE MOTHERFUCKER DIEEEEEEEEEEEE
-        DestroyImmediate(transform.parent.gameObject);
+        Destroy(transform.parent.gameObject);
       }
     }
 

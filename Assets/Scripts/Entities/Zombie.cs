@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 // What data?
 // - Get target location
@@ -24,7 +25,9 @@ public class Zombie : MonoBehaviour {
   [SerializeField]
   private Transform rendererTransform;
   [SerializeField]
-  private float moveSpeed = 1.0f;
+  private float moveSpeedMin = 1.0f;
+  [SerializeField]
+  private float moveSpeedMax = 2.0f;
   [SerializeField]
   private float stopDistance = 0.01f;
   [SerializeField]
@@ -43,6 +46,7 @@ public class Zombie : MonoBehaviour {
   private Vector3? m_targetPosition;
   private HealthSystem m_targetHealth;
   private float m_breakingProgress;
+  private float m_moveSpeed;
 
   public State CurrentState {
     get => state.Value;
@@ -58,6 +62,7 @@ public class Zombie : MonoBehaviour {
     m_healthSystem = GetComponent<HealthSystem>();
     m_healthSystem.health.AddListener(OnHealthChange);
     
+    m_moveSpeed = Random.Range(moveSpeedMin, moveSpeedMax);
     state = new(State.IDLE);
   }
 
@@ -133,7 +138,7 @@ public class Zombie : MonoBehaviour {
       direction.Normalize();
 
       // Steering behaviour
-      Vector2 desiredVelocity = direction * moveSpeed;
+      Vector2 desiredVelocity = direction * m_moveSpeed;
       Vector2 steering = desiredVelocity - m_rigidbody.linearVelocity;
 
       m_rigidbody.AddForce(steering, ForceMode2D.Force);

@@ -6,17 +6,7 @@ public class ZombieNavigateStrategy : BrainStrategy {
   private Zombie m_zombie;
   private HealthSystem m_targetHealth;
   
-  // TODO algorithm
-  // Go to the closest target
-  // If target does not exist anymore - change target
-  
   // TODO if we target door and lure was placed - update
-  
-  // Priorities
-  // Lure (any)
-  // Door
-  
-  // SpawnManager
   
   public override void Initialize(GameObject parent, Brain brain) {
     base.Initialize(parent, brain);

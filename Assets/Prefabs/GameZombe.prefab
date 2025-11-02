@@ -69,7 +69,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vfx: {fileID: 5685256418181453149, guid: 99b7a6319c8e6af4691ee836eaf9ad89, type: 3}
   rendererTransform: {fileID: 4838024400306864835}
-  moveSpeed: 2
+  moveSpeedMin: 1
+  moveSpeedMax: 2
   stopDistance: 0.3
   secondsToBreak: 1
   damage: 1
@@ -272,7 +273,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -1052645464225236033, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

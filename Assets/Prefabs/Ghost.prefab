@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3203382874159105007}
   - component: {fileID: 2237594997258195579}
   - component: {fileID: 8910166598087158896}
+  - component: {fileID: 7669109453014559095}
+  - component: {fileID: 2847189081110725282}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -96,6 +98,40 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7669109453014559095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6824783495652400492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 953c76f0898edaa4e92d512d2953b353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rendererTransform: {fileID: 8716834858208539357}
+  moveSpeed: 1
+  stopDistance: 0.01
+  standingTimeSecondsMin: 0.3
+  standingTimeSecondsMax: 3
+  targetOffset: 0.1
+  state:
+    value: 0
+--- !u!114 &2847189081110725282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6824783495652400492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9aa58d00a947649e74c46f136d7941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_initialStrategies: []
+  m_defaultStrategyName: 
 --- !u!1 &7760182069983192253
 GameObject:
   m_ObjectHideFlags: 0

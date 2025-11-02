@@ -18,9 +18,10 @@ public class GameManager : SceneSingleton<GameManager> {
   private GameObject doorObject;
 
   // State (initialization is in Initialize())
+  public ObservableValue<int> CandyCount { get; private set; }
+  private GameState m_gameState;
   private RoomType m_currentRoom;
   private ToolType m_activeTool;
-  private int m_candyCount;
   private float m_doorHealth; // TODO remove. We have a door gameObject
   private float m_clockState; // TODO remove. We have clock gameObject
   private float gameTimeSeconds;
@@ -38,9 +39,10 @@ public class GameManager : SceneSingleton<GameManager> {
   // TODO SpawnManager
 
   protected override void OnInitializeSingleton() {
+    m_gameState = GameState.GAME;
     m_currentRoom = RoomType.LIVING_ROOM;
     m_activeTool = ToolType.HAMMER;
-    m_candyCount = 0;
+    CandyCount = new();
     m_clockState = 0.0f;
     m_doorHealth = initialDoorHealth;
     gameTimeSeconds = 0.0f;
@@ -61,7 +63,7 @@ public class GameManager : SceneSingleton<GameManager> {
       m_activeTool = ToolType.LURE_BIG;
     }
 
-    Debug.Log("Active tool: " + m_activeTool);
+    //Debug.Log("Active tool: " + m_activeTool);
     
     // TODO REMOVE
     
@@ -88,7 +90,10 @@ public class GameManager : SceneSingleton<GameManager> {
   
   
   // === State management ===
-  
+
+  public GameState GetGameState() {
+    return m_gameState;
+  }
   
   public RoomType GetCurrentRoom() {
     return m_currentRoom;
@@ -128,10 +133,6 @@ public class GameManager : SceneSingleton<GameManager> {
   public int GetGhostCountGarage() {
     // TODO implement. array of gameobjects?
     return 0;
-  }
-
-  public int GetCandyCount() {
-    return m_candyCount;
   }
 
   public float GetLureRadius() {

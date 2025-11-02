@@ -20,7 +20,7 @@ public class EntityHitController : MonoBehaviour {
 
     Vector2 mouseWorld = mainCamera.ScreenToWorldPoint(Input.mousePosition);
     RaycastHit2D[] hits = Physics2D.RaycastAll(mouseWorld, Vector2.zero);
-    Debug.Log($"Colliders: {hits.Length}");
+    //Debug.Log($"Colliders: {hits.Length}");
     
     foreach (var hit in hits) {
       if (!hit.collider) {

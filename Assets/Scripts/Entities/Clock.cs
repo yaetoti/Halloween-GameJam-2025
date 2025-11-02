@@ -127,6 +127,7 @@ public class Clock : MonoBehaviour {
     
     // If the cursor is inside the collider and LMB is pressed - wind up
     if (Input.GetKey(KeyCode.Mouse0) && clockCollider.OverlapPoint(mouseWorld)) {
+      //Debug.Log("winding");
       CurrentClockState.Value = ClockState.WINDING;
       progress -= Time.deltaTime / secondsToWind;
 

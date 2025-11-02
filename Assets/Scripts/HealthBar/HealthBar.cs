@@ -13,6 +13,10 @@ public class HealthBar : MonoBehaviour {
     healthSystem.maxHealth.AddListener(OnMaxHealthChanged);
   }
 
+  private void Start() {
+    UpdateBar();
+  }
+
   private void OnDestroy() {
     healthSystem.health.RemoveListener(OnHealthChanged);
     healthSystem.maxHealth.RemoveListener(OnMaxHealthChanged);
@@ -31,7 +35,7 @@ public class HealthBar : MonoBehaviour {
   }
   
   private void UpdateBar() {
-    float healthValue = Mathf.Clamp(healthSystem.health.Value, 0, healthSystem.maxHealth.Value);
-    m_healthBarMat.SetFloat(HEALTH, healthValue / healthSystem.maxHealth.Value);
+    float healthValue = Mathf.Clamp(healthSystem.Health, 0, healthSystem.MaxHealth);
+    m_healthBarMat.SetFloat(HEALTH, healthValue / healthSystem.MaxHealth);
   }
 }

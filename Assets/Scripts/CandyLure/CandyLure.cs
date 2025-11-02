@@ -46,7 +46,7 @@ public class CandyLure : MonoBehaviour
     }
 
     private float GetHealthPercent() {
-        return (float)m_healthSystem.Health / m_healthSystem.Health * 100.0f;
+        return (float)m_healthSystem.Health / m_healthSystem.MaxHealth * 100.0f;
     }
 
     private IEnumerator SetSpriteIndex()

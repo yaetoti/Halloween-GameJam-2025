@@ -150,6 +150,7 @@ public class Ghost : MonoBehaviour
     if (health <= 0)
     {
       Instantiate(vfx, transform.position, Quaternion.identity);
+
       Destroy(gameObject);
     }
   }

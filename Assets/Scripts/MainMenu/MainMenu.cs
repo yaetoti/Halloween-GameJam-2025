@@ -11,7 +11,6 @@ public class MainMenu : MonoBehaviour
 
     void OnEnable()
     {
-        DontDestroyOnLoad(audio.gameObject);
         DontDestroyOnLoad(gameObject);
         MuteAudio = false;
         MuteMusic = false;

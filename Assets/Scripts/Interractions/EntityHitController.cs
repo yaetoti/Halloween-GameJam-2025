@@ -6,6 +6,8 @@ public class EntityHitController : MonoBehaviour {
   public Camera mainCamera;
 
   public List<AudioSource> bonks;
+
+  public AudioSource ghost;
   
   private void Update() {
     // Debug.Log($"AppState: {ApplicationManager.Instance.GetAppState()}");
@@ -38,7 +40,7 @@ public class EntityHitController : MonoBehaviour {
         
         int index = UnityEngine.Random.Range(0, 3);
         bonks[index].Play();
-        
+
         // GIVE US A SIGN
         if (healthSystemComponent.Health <= 0) {
           GhostSpawnManager.Instance.SpawnGhost();
@@ -51,7 +53,9 @@ public class EntityHitController : MonoBehaviour {
       if (ghostComponent) {
         HealthSystem healthSystemComponent = hit.collider.GetComponent<HealthSystem>();
         healthSystemComponent.health.Value -= 1;
-        
+
+        ghost.Play();
+
         if (healthSystemComponent.Health <= 0) {
           // Give a candy =)
           GameManager.Instance.CandyCount.Value += 1;

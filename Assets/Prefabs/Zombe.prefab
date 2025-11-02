@@ -65,7 +65,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9bbd0d51d2c6c47ae341d924141a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enterPoint: {fileID: 0}
+  rendererTransform: {fileID: 5531413086407231040}
+  moveSpeed: 1
+  stopDistance: 0.01
+  secondsToBreak: 1
+  damage: 1
 --- !u!114 &7656060854077257526
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class LurePlacementController : MonoBehaviour {
 
   private void Start() {
     // TODO bedug
-    GameManager.Instance.ToggleRoom();
+    //GameManager.Instance.ToggleRoom();
   }
 
   private void Update() {

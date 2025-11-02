@@ -152,8 +152,6 @@ MonoBehaviour:
   lureRadius: 0
   hammerRadius: 0
   zombieSpawnRate: 0
-  initialDoorHealth: 0
-  gameLengthSeconds: 0
   clockObject: {fileID: 0}
   doorObject: {fileID: 0}
 --- !u!4 &54452155
@@ -183,6 +181,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f71458e59eaf845815e16db80724f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &184631038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3736654160546861113, guid: 3cb7bba3d93872d4e8d7fe4f1c089f8c, type: 3}
+  m_PrefabInstance: {fileID: 5918875740207794048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &184631045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184631038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430d47fee0354b25a3795e6a4a5aff1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 2069368674}
+  targetHealth: {fileID: 2069368672}
 --- !u!1 &257182663
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,6 +783,10 @@ MonoBehaviour:
   startTimeMinutes: 120
   endTimeMinutes: 300
   gameTimeSeconds: 60
+  unwindingProgress:
+    value: 0
+  timeProgress:
+    value: 0
 --- !u!61 &791243640
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1031,8 +1052,6 @@ MonoBehaviour:
   lureRadius: 0
   hammerRadius: 0
   zombieSpawnRate: 0
-  initialDoorHealth: 0
-  gameLengthSeconds: 0
   clockObject: {fileID: 791243639}
   doorObject: {fileID: 2069368671}
 --- !u!4 &1215646199
@@ -1475,6 +1494,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2994063584654256591, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
   m_PrefabInstance: {fileID: 7792674443049842333}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2069368672 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1476671546764937593, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+  m_PrefabInstance: {fileID: 7792674443049842333}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069368671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07cdd2ad1e504cb2892155dc60ac3f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2069368674 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5476141585480944382, guid: eaeb4c949cb72e946bece1dc53fd4246, type: 3}
+  m_PrefabInstance: {fileID: 7792674443049842333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2122332371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,7 +1555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2eb67d273a336b489f8fc4aadda39a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 1368479141}
+  healthSystem: {fileID: 0}
   timer: 0
 --- !u!1 &2131600153
 GameObject:
@@ -1913,6 +1948,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1774710838008512466, guid: 3cb7bba3d93872d4e8d7fe4f1c089f8c, type: 3}
+      propertyPath: moveSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774710838008512466, guid: 3cb7bba3d93872d4e8d7fe4f1c089f8c, type: 3}
+      propertyPath: stopDistance
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3736654160546861113, guid: 3cb7bba3d93872d4e8d7fe4f1c089f8c, type: 3}
       propertyPath: m_Name
       value: Zombe
@@ -1984,7 +2027,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3736654160546861113, guid: 3cb7bba3d93872d4e8d7fe4f1c089f8c, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 184631045}
   m_SourcePrefab: {fileID: 100100000, guid: 3cb7bba3d93872d4e8d7fe4f1c089f8c, type: 3}
 --- !u!1001 &7792674443049842333
 PrefabInstance:

@@ -167,7 +167,11 @@ MonoBehaviour:
   secondsToUnwind: 10
   startTimeMinutes: 120
   endTimeMinutes: 300
-  m_timeProgress: 1
+  gameTimeSeconds: 0
+  unwindingProgress:
+    value: 0
+  timeProgress:
+    value: 0
 --- !u!58 &3358555151163883470
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -259,7 +263,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: de32308de290c2440884a7bfec66cbac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -433,7 +437,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: de32308de290c2440884a7bfec66cbac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

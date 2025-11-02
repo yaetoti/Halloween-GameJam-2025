@@ -67,6 +67,10 @@ public class Clock : MonoBehaviour {
   private Sprite damagedClock;
   [SerializeField]
   private Sprite destroyedClock;
+
+  [Space(10)]
+  [SerializeField]
+  private Animator m_anim;
   
 
   public float UnwindingProgress {
@@ -94,6 +98,7 @@ public class Clock : MonoBehaviour {
   public ObservableValue<ClockState> CurrentClockState { get; private set; } = new(ClockState.UNWINDING);
 
   private void Awake() {
+    m_anim = GetComponent<Animator>();
   }
 
   public void Update() {
@@ -170,9 +175,10 @@ public class Clock : MonoBehaviour {
   }
 
     void FixedUpdate()
-    {
+  {
+    m_anim.speed = UnwindingProgress * 2;
     switch (UnwindingProgress)
-      {
+    {
       case > .75f:
         sprite.sprite = destroyedClock;
         break;

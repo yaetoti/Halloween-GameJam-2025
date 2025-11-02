@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-100)]
 public class GameManager : SceneSingleton<GameManager> {
@@ -79,6 +80,8 @@ public class GameManager : SceneSingleton<GameManager> {
   }
 
   protected override void OnDestroy() {
+    base.OnDestroy();
+    
     if (clockObject) {
       clockObject.timeProgress.RemoveListener(OnTimeProgressChange);
       clockObject.unwindingProgress.RemoveListener(OnClockUnwindingChange);
@@ -94,6 +97,8 @@ public class GameManager : SceneSingleton<GameManager> {
     if (progress >= 1.0f) {
       Debug.Log("[END]: Time is out!");
       
+      SceneManager.LoadScene("Win");
+      
       // TODO Add ApplicationManager data that will appear in win/lose
       
       // TODO win
@@ -108,6 +113,8 @@ public class GameManager : SceneSingleton<GameManager> {
     if (progress >= 1.0f) {
       Debug.Log("[END]: The clock is broken!");
       
+      SceneManager.LoadScene("Loose_Clock");
+      
       // TODO Add ApplicationManager data that will appear in win/lose
       // TODO lose
       // TODO change state
@@ -119,6 +126,7 @@ public class GameManager : SceneSingleton<GameManager> {
     if (health <= 0) {
       Debug.Log("[END]: The door is broken!");
       
+      SceneManager.LoadScene("Loose_Door");
       // TODO Add ApplicationManager data that will appear in win/lose
       // TODO lose
       // TODO change state

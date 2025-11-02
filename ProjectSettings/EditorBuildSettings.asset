@@ -11,6 +11,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 995565aa125d14c42931b5c8f622c256
+  - enabled: 1
+    path: Assets/Scenes/Loose_Clock.unity
+    guid: e3063526f87045943afaf543031fa7ec
+  - enabled: 1
+    path: Assets/Scenes/Loose_Door.unity
+    guid: a599f4e01051db14493fc210642d3523
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+    guid: 2b07b75db45f9994c89f30b0da65682b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

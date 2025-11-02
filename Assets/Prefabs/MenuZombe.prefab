@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9bbd0d51d2c6c47ae341d924141a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vfx: {fileID: 0}
   rendererTransform: {fileID: 4838024400306864835}
   moveSpeedMin: 1
   moveSpeedMax: 2
@@ -177,10 +178,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 5950613237767986127}
-  i1: {fileID: -1052645464225236033, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
-  i2: {fileID: 2611215814755630886, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
-  w1: {fileID: -6933277864299866225, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
-  w2: {fileID: 6403456381478957942, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
+  i1: {fileID: -6933277864299866225, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
+  i2: {fileID: 6403456381478957942, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
+  w1: {fileID: -1052645464225236033, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
+  w2: {fileID: 2611215814755630886, guid: e0dd704b2a905b548a395c97855a50fe, type: 3}
 --- !u!1 &4443266592119286098
 GameObject:
   m_ObjectHideFlags: 0

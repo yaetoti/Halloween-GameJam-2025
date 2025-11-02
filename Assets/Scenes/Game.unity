@@ -1636,6 +1636,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 38.6, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1025501772 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 608325417485562864, guid: c9e510ddc49a3924dbbc4429c8ad5f04, type: 3}
+  m_PrefabInstance: {fileID: 486357035}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1104234600
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,6 +2042,7 @@ MonoBehaviour:
   bat: {fileID: 324949317}
   smallLure: {fileID: 363452314}
   bigLure: {fileID: 1697448755}
+  uiClock: {fileID: 1025501772}
 --- !u!4 &1924648719
 Transform:
   m_ObjectHideFlags: 0

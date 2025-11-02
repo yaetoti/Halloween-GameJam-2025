@@ -33,15 +33,15 @@ public class GameManager : SceneSingleton<GameManager> {
   }
 
   private void Start() {
-    clockObject.TimeProgress.AddListener(OnTimeProgressChange);
-    clockObject.UnwindingProgress.AddListener(OnClockUnwindingChange);
+    clockObject.timeProgress.AddListener(OnTimeProgressChange);
+    clockObject.unwindingProgress.AddListener(OnClockUnwindingChange);
     m_doorHealthSystem.health.AddListener(OnDoorHealthChange);
   }
 
   protected override void OnDestroy() {
     if (clockObject) {
-      clockObject.TimeProgress.RemoveListener(OnTimeProgressChange);
-      clockObject.UnwindingProgress.RemoveListener(OnClockUnwindingChange);
+      clockObject.timeProgress.RemoveListener(OnTimeProgressChange);
+      clockObject.unwindingProgress.RemoveListener(OnClockUnwindingChange);
     }
   }
 

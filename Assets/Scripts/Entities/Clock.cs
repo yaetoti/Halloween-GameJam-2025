@@ -1,12 +1,11 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
-#if UNITY_EDITOR
 using UnityEditor;
 
 public class Clock : MonoBehaviour {
-  
+#if UNITY_EDITOR
+
   [CustomEditor(typeof(Clock))]
   public class ClockEditor : Editor {
     public override void OnInspectorGUI() {
@@ -14,9 +13,9 @@ public class Clock : MonoBehaviour {
         
       Clock clock = (Clock)target;
       EditorGUI.BeginChangeCheck();
-      float newProgress = EditorGUILayout.Slider("Time Progress", clock.TimeProgress.Value, 0f, 1f);
+      float newProgress = EditorGUILayout.Slider("Time Progress", clock.TimeProgress, 0f, 1f);
       if (EditorGUI.EndChangeCheck()) {
-        clock.TimeProgress.Value = newProgress;
+        clock.TimeProgress = newProgress;
       }
     }
   }
@@ -52,10 +51,32 @@ public class Clock : MonoBehaviour {
   
   // State
   // [0-1]
-  public ObservableValue<float> UnwindingProgress { get; private set; } = new();
-
+  public ObservableValue<float> unwindingProgress = new();
   // [0-1] Game time progress. From 2:00 to 5:00
-  public ObservableValue<float> TimeProgress { get; private set; } = new();
+  public ObservableValue<float> timeProgress = new();
+
+
+  public float UnwindingProgress {
+    get => unwindingProgress.Value;
+    private set {
+      float newValue = Mathf.Clamp01(value);
+      // ReSharper disable once CompareOfFloatsByEqualityOperator
+      if (newValue != unwindingProgress.Value) {
+        unwindingProgress.Value = newValue;
+      }
+    }
+  }
+
+  public float TimeProgress {
+    get => timeProgress.Value;
+    private set {
+      float newValue = Mathf.Clamp01(value);
+      // ReSharper disable once CompareOfFloatsByEqualityOperator
+      if (newValue != timeProgress.Value) {
+        timeProgress.Value = newValue;
+      }
+    }
+  }
 
   public ObservableValue<ClockState> CurrentClockState { get; private set; } = new(ClockState.UNWINDING);
 
@@ -76,7 +97,7 @@ public class Clock : MonoBehaviour {
     // }
 
     // --- Update time ---
-    TimeProgress.Value += Time.deltaTime / gameTimeSeconds;
+    TimeProgress += Time.deltaTime / gameTimeSeconds;
     
     // --- Update winding ---
     // TODO Here we should limit motions
@@ -84,7 +105,7 @@ public class Clock : MonoBehaviour {
     // TODO how to track state change?
     
     Vector2 mouseWorld = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-    float progress = UnwindingProgress.Value;
+    float progress = UnwindingProgress;
     
     // If the cursor is inside the collider and LMB is pressed - wind up
     if (Input.GetKey(KeyCode.Mouse0) && clockCollider.OverlapPoint(mouseWorld)) {
@@ -106,7 +127,7 @@ public class Clock : MonoBehaviour {
       }
     }
     
-    UnwindingProgress.Value = progress;
+    UnwindingProgress = progress;
     
     // === Set arrows position ===
     var clockData = GetClockData();
@@ -116,7 +137,7 @@ public class Clock : MonoBehaviour {
   
   public ClockData GetClockData() {
     int duration = endTimeMinutes - startTimeMinutes;
-    int currentTime = startTimeMinutes + (int)(duration * TimeProgress.Value);
+    int currentTime = startTimeMinutes + (int)(duration * TimeProgress);
     int hours = currentTime / 60;
     int displayedHours = hours % 12;
     int minutes = currentTime - hours * 60;

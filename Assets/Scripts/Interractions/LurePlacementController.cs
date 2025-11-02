@@ -2,8 +2,8 @@
 using UnityEngine;
 
 public class LurePlacementController : MonoBehaviour {
-  public static readonly int SMALL_LURE_PRICE = 5;
-  public static readonly int BIG_LURE_PRICE = 10;
+  public const int SMALL_LURE_PRICE = 5;
+  public const int BIG_LURE_PRICE = 10;
   
   public Camera mainCamera;
   public Collider2D placementCollider;

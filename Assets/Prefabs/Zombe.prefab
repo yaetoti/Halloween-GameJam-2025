@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4442307316969083268}
   - component: {fileID: 190353808504090098}
   - component: {fileID: 1774710838008512466}
+  - component: {fileID: 7656060854077257526}
   - component: {fileID: 5573946382169839917}
   - component: {fileID: 8819303568796708765}
   m_Layer: 0
@@ -65,6 +66,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enterPoint: {fileID: 0}
+--- !u!114 &7656060854077257526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3736654160546861113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9aa58d00a947649e74c46f136d7941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_initialStrategies: []
+  m_defaultStrategyName: 
 --- !u!61 &5573946382169839917
 BoxCollider2D:
   m_ObjectHideFlags: 0

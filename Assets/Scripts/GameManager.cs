@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 [DefaultExecutionOrder(-100)]
@@ -14,6 +15,25 @@ public class GameManager : SceneSingleton<GameManager> {
   private Clock clockObject;
   [SerializeField]
   private GameObject doorObject;
+
+  [Space(10)]
+
+  [SerializeField]
+  private Image bat;
+
+  [SerializeField]
+  private Image smallLure;
+
+  [SerializeField]
+  private Image bigLure;
+
+  [Space(10)]
+
+  [SerializeField]
+  private Image uiClock;
+
+  [Space(10)]
+  private TMPro.TextMeshProUGUI candyCount;
 
   // State (initialization is in Initialize())
   public ObservableValue<int> CandyCount { get; private set; }
@@ -36,6 +56,12 @@ public class GameManager : SceneSingleton<GameManager> {
     clockObject.timeProgress.AddListener(OnTimeProgressChange);
     clockObject.unwindingProgress.AddListener(OnClockUnwindingChange);
     m_doorHealthSystem.health.AddListener(OnDoorHealthChange);
+    CandyCount.AddListener(SetCandyCountText);
+  }
+
+  private void SetCandyCountText(int count)
+  {
+    candyCount.text = count.ToString();
   }
 
   protected override void OnDestroy() {
@@ -46,14 +72,21 @@ public class GameManager : SceneSingleton<GameManager> {
   }
 
   private void OnTimeProgressChange(float progress) {
+
+    uiClock.material.SetFloat("_TimeTillEnd", progress);
+
+    Shader.SetGlobalFloat("_LightLerp", progress);
+
     if (progress >= 1.0f) {
       Debug.Log("[END]: Time is out!");
+      
       // TODO Add ApplicationManager data that will appear in win/lose
       
       // TODO win
       // TODO change state
       // TODO activate cutscene
     }
+    
   }
 
   private void OnClockUnwindingChange(float progress) {
@@ -79,24 +112,41 @@ public class GameManager : SceneSingleton<GameManager> {
     }
   }
 
-  private void Update() {
+  private void Update()
+  {
     // No item changing if not in the game
-    if (m_gameState != GameState.GAME) {
+    if (m_gameState != GameState.GAME)
+    {
       return;
     }
 
-    if (Input.GetKeyDown(KeyCode.Alpha1)) {
-      m_activeTool = ToolType.HAMMER;
+    if (Input.GetKeyDown(KeyCode.Alpha1))
+    {
+      SetActiveTool(ToolType.HAMMER);
     }
-    if (Input.GetKeyDown(KeyCode.Alpha2)) {
-      m_activeTool = ToolType.LURE_SMALL;
+    if (Input.GetKeyDown(KeyCode.Alpha2))
+    {
+      SetActiveTool(ToolType.LURE_SMALL);
     }
-    if (Input.GetKeyDown(KeyCode.Alpha3)) {
-      m_activeTool = ToolType.LURE_BIG;
+    if (Input.GetKeyDown(KeyCode.Alpha3))
+    {
+      SetActiveTool(ToolType.LURE_BIG);
     }
   }
 
+  private void SetActiveUIButton(Image image, float state = 1)
+  {
+    image.material.SetFloat("_IsChecked", state);
+  }
+
+  private void ResetActiveUIButton()
+  {
+    bat.material.SetFloat("_IsChecked", 0);
+    smallLure.material.SetFloat("_IsChecked", 0);
+    bigLure.material.SetFloat("_IsChecked", 0);
+  }
   
+
   // === Scene management ===
   
   
@@ -131,14 +181,43 @@ public class GameManager : SceneSingleton<GameManager> {
   public void ToggleRoom() {
     SetCurrentRoom(m_currentRoom == RoomType.GARAGE ? RoomType.LIVING_ROOM : RoomType.GARAGE);
   }
-  
-  public ToolType GetActiveTool() {
+
+  public ToolType GetActiveTool()
+  {
     return m_activeTool;
   }
 
+  public void SetActiveTool(string type)
+    {
+      switch (type)
+      {
+        case "HAMMER":
+          SetActiveTool(ToolType.HAMMER);
+          break;
+        case "LURE_SMALL":
+          SetActiveTool(ToolType.LURE_SMALL);
+          break;
+        case "LURE_BIG":
+          SetActiveTool(ToolType.LURE_BIG);
+          break;
+      }
+    }
+
   public void SetActiveTool(ToolType type) {
     m_activeTool = type;
-    // TODO transition (?)
+    ResetActiveUIButton();
+    switch (type)
+    {
+      case ToolType.HAMMER:
+        SetActiveUIButton(bat);
+        break;
+      case ToolType.LURE_SMALL:
+        SetActiveUIButton(smallLure);
+        break;
+      case ToolType.LURE_BIG:
+        SetActiveUIButton(bigLure);
+        break;    
+    }
   }
 
   public float GetLureRadius() {

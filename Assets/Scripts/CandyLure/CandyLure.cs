@@ -22,13 +22,13 @@ public class CandyLure : MonoBehaviour
     }
     
     private void Start() {
-      SpawnManager.Instance.RegisterLure(gameObject.transform.parent.gameObject);
+      EntityManager.Instance.RegisterLure(gameObject.transform.parent.gameObject);
       StartCoroutine(SetSpriteIndex());
     }
 
     private void OnDestroy() {
       m_healthSystem?.health.RemoveListener(OnHealthChanged);
-      SpawnManager.Instance?.UnregisterLure(gameObject.transform.parent.gameObject);
+      EntityManager.Instance?.UnregisterLure(gameObject.transform.parent.gameObject);
     }
 
     public void Damage() {

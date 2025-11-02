@@ -26,8 +26,6 @@ public class ZombieNavigateStrategy : BrainStrategy {
 
   public override void OnStart() {
     base.OnStart();
-
-    Debug.Log("Navigate Start");
   }
 
   public override void OnStop() {
@@ -47,14 +45,14 @@ public class ZombieNavigateStrategy : BrainStrategy {
       float closestDistance = float.PositiveInfinity;
 
       // Find closest lure
-      foreach (var lure in SpawnManager.Instance.LureObjects) {
-        Debug.Log("vibe check");
+      foreach (var lure in EntityManager.Instance.LureObjects) {
+        //Debug.Log("vibe check");
         var lureHealth = lure.transform.GetChild(0).GetComponent<HealthSystem>();
         var lurePosition = lure.transform.position;
         float lureDistance = Vector3.Distance(m_zombie.transform.position, lurePosition);
         
         if (lureDistance < closestDistance) {
-          Debug.Log("check passed");
+          //Debug.Log("check passed");
           closestDistance = lureDistance;
           targetHealth = lureHealth;
           targetPosition = lurePosition;

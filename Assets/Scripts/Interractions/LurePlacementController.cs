@@ -53,7 +53,7 @@ public class LurePlacementController : MonoBehaviour {
     if (prefab is not null) {
       prefab.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = m_lureCounter;
       var lureObject = Instantiate(prefab, mousePosWorld, Quaternion.identity);
-      SpawnManager.Instance.RegisterLure(lureObject);
+      EntityManager.Instance.RegisterLure(lureObject);
       m_lureCounter++;
     }
   }

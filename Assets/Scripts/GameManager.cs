@@ -1,56 +1,48 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [DefaultExecutionOrder(-100)]
-public class GameManager : MonoBehaviour {
-  public static GameManager Instance { get; private set; }
-  
+public class GameManager : SceneSingleton<GameManager> {
   // Params
   public float lureRadius;
   public float hammerRadius;
   // TODO: Will we need initial value? If so, create zombieSpawnRateInitial and change getter
-  public float zombieSpawnRate;
-  public float initialDoorHealth;
-  public float gameLengthSeconds;
-  
+  public float zombieSpawnRate; // TODO spawner is controlling it
+  public float initialDoorHealth; // TODO door is controlling it
+  public float gameLengthSeconds; // TODO clock is controlling it
+
+  [SerializeField]
+  private Clock clockObject;
+  [SerializeField]
+  private GameObject doorObject;
+
   // State (initialization is in Initialize())
+  public ObservableValue<int> CandyCount { get; private set; }
+  private GameState m_gameState;
   private RoomType m_currentRoom;
   private ToolType m_activeTool;
-  private int m_candyCount;
-  private float m_doorHealth;
-  private float m_clockState;
+  private float m_doorHealth; // TODO remove. We have a door gameObject
+  private float m_clockState; // TODO remove. We have clock gameObject
   private float gameTimeSeconds;
   
+  // Entities
   
-  private void Awake() {
-    Initialize();
-  }
-
-  private void OnEnable() {
-    // Anti-crash for domain reloading
-#if UNITY_EDITOR
-    Initialize();
-#endif
-  }
   
-  private void Initialize() {
-    // Singleton init
-    if (Instance == this) {  
-      return;  
-    }  
-      
-    if (Instance is not null) {
-      Destroy(this);
-      return;
-    }  
-    
-    Instance = this;
-    //DontDestroyOnLoad(this);
-    
-    // Real initialization
+  // Door is just.. HealthBar, Health
+  // +entities arrays
+  // TODO Add entities: ghosts, zombies
+  
+  // Place LMB: in trigger, no overlaps, enough candies -> Add Lure at this position + Register
+  
+  // TODO InteractionManager (or player)
+  // TODO SpawnManager
 
+  protected override void OnInitializeSingleton() {
+    m_gameState = GameState.GAME;
     m_currentRoom = RoomType.LIVING_ROOM;
     m_activeTool = ToolType.HAMMER;
-    m_candyCount = 0;
+    CandyCount = new();
     m_clockState = 0.0f;
     m_doorHealth = initialDoorHealth;
     gameTimeSeconds = 0.0f;
@@ -58,6 +50,51 @@ public class GameManager : MonoBehaviour {
     Debug.Log("GameManager initialized");
   }
 
+  private void Update() {
+    // TODO state check (return if not playing)
+
+    if (Input.GetKeyDown(KeyCode.Alpha1)) {
+      m_activeTool = ToolType.HAMMER;
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha2)) {
+      m_activeTool = ToolType.LURE_SMALL;
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha3)) {
+      m_activeTool = ToolType.LURE_BIG;
+    }
+
+    //Debug.Log("Active tool: " + m_activeTool);
+    
+    // TODO REMOVE
+    
+    gameTimeSeconds += Time.deltaTime;
+
+    if (gameTimeSeconds >= gameLengthSeconds) {
+      // TODO check win/lose conditions
+      // TODO change state
+      // TODO activate cutscene
+    }
+  }
+
+  
+  // === Scene management ===
+  
+  
+  public Clock GetClock() {
+    return clockObject;
+  }
+
+  public GameObject GetDoor() {
+    return doorObject;
+  }
+  
+  
+  // === State management ===
+
+  public GameState GetGameState() {
+    return m_gameState;
+  }
+  
   public RoomType GetCurrentRoom() {
     return m_currentRoom;
   }
@@ -77,19 +114,11 @@ public class GameManager : MonoBehaviour {
 
   public void SetActiveTool(ToolType type) {
     m_activeTool = type;
-    // TODO transition
+    // TODO transition (?)
   }
   
   public float GetDoorHealth() {
     return m_doorHealth;
-  }
-
-  public float GetClockState() {
-    return m_clockState;
-  }
-
-  public void SetClockState(float state) {
-    m_clockState = state;
   }
   
   public float GetTimeTillVictory() {
@@ -104,10 +133,6 @@ public class GameManager : MonoBehaviour {
   public int GetGhostCountGarage() {
     // TODO implement. array of gameobjects?
     return 0;
-  }
-
-  public int GetCandyCount() {
-    return m_candyCount;
   }
 
   public float GetLureRadius() {

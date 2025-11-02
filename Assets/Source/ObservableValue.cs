@@ -1,33 +1,36 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class ObservableValue<T> {
   // Properties
   public T Value {
-    get => m_value;
+    get => value;
     set {
-      m_value = value;
+      this.value = value;
       Notify();
     }
   }
 
   // Events
-  private event Action<T> OnValueChanged;
+  public event Action<T> OnValueChanged;
 
   // State
-  private T m_value;
+  [SerializeField]
+  private T value;
 
   public ObservableValue() {
+    value = default;
   }
 
   public ObservableValue(T value) {
     // TODO no listeners here, it's a constructor, am I right?
     //Value = value;
-    m_value = value;
+    this.value = value;
   }
 
   public void Notify() {
-    OnValueChanged?.Invoke(m_value);
+    OnValueChanged?.Invoke(value);
   }
 
   public void AddListener(Action<T> listener) {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
@@ -5,25 +6,23 @@ using UnityEngine;
 public class CandyLure : MonoBehaviour
 {
     public SpriteRenderer LureSprite;
-    public float Health;
 
-    private float m_maxHealth;
+    private Health m_health;
+    //private float m_maxHealth;
     private int m_spriteIndex;
-
-    [Space(10)]
-    public HealthBar HealthBar;
-    [Space(10)]
 
     public Sprite SpriteA;
     public Sprite SpriteB;
     public Sprite AlmostBroken;
     public Sprite Broken;
 
-    private void OnEnable()
-    {
-        m_maxHealth = Health;
-        HealthBar.MaxHealth = m_maxHealth;
-        HealthBar.Health = Health;
+    private void Awake() {
+      m_health = GetComponent<Health>();
+      m_health.health.AddListener(OnHealthChanged);
+    }
+
+    private void OnDestroy() {
+      m_health.health.RemoveListener(OnHealthChanged);
     }
 
     private void Start()
@@ -31,29 +30,19 @@ public class CandyLure : MonoBehaviour
         StartCoroutine(SetSpriteIndex());
     }
 
-    public void Damage()
-    {
-        Health--;
-        HealthBar.Health = Health;
-        if (Health <= 0)
-        {
-            Die();
-        }
+    public void Damage() {
+      m_health.health.Value--;
     }
 
-    private void Die()
-    {
+    private void OnHealthChanged(int health) {
+      if (health == 0) {
+        // DIE MOTHERFUCKER DIE MOTHERFUCKER DIEEEEEEEEEEEE
         Destroy(transform.parent.gameObject);
+      }
     }
 
-    public void SetStartHealth(float health)
-    {
-        m_maxHealth = Health = health;
-    }
-
-    private float GetHealthPercent()
-    {
-        return Health / m_maxHealth * 100;
+    private float GetHealthPercent() {
+        return (float)m_health.health.Value / m_health.maxHealth.Value * 100.0f;
     }
 
     private IEnumerator SetSpriteIndex()

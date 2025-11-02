@@ -1,5 +1,12 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
+
+// What data?
+// - Get target location
+  
+// How to get door location? AHH, we need a gamemanager
+// How to get lure location? AHH WE NEED A SPAWNER AHAHAHHAH "ahh" ahh energy
 
 public class Zombie : MonoBehaviour {
   public enum State {
@@ -7,14 +14,6 @@ public class Zombie : MonoBehaviour {
     PURSUING,
     BREAKING,
   }
-  
-  // What data?
-  // - Get target location
-  
-  // How to get door location? AHH, we need a gamemanager
-  // How to get lure location? AHH WE NEED A SPAWNER AHAHAHHAH "ahh" ahh energy
-  
-  
   
   // Params
   [SerializeField]
@@ -28,21 +27,33 @@ public class Zombie : MonoBehaviour {
   [SerializeField]
   private int damage = 1;
 
+  public float targetOffset = 0.1f;
+
   // State
   private Rigidbody2D m_rigidbody;
   private HealthSystem m_healthSystem;
 
+  [DoNotSerialize]
+  public ObservableValue<State> state;
   private Vector3? m_targetPosition;
   private HealthSystem m_targetHealth;
-  private State m_state;
   private float m_breakingProgress;
+
+  public State CurrentState {
+    get => state.Value;
+    set {
+      if (value != state.Value) {
+        state.Value = value;
+      }
+    }
+  }
 
   private void Awake() {
     m_rigidbody = GetComponent<Rigidbody2D>();
     m_healthSystem = GetComponent<HealthSystem>();
     m_healthSystem.health.AddListener(OnHealthChange);
     
-    m_state = State.IDLE;
+    state = new(State.IDLE);
   }
 
   private void OnDestroy() {
@@ -51,7 +62,7 @@ public class Zombie : MonoBehaviour {
 
   private void Update() {
     // Come close, start breaking
-    if (m_state == State.PURSUING) {
+    if (CurrentState == State.PURSUING) {
       Vector2 direction = m_targetPosition!.Value - transform.position;
       float distance = direction.magnitude;
       
@@ -61,13 +72,15 @@ public class Zombie : MonoBehaviour {
       
       // Check breaking condition
       if (distance <= stopDistance) {
-        m_state = State.BREAKING;
+        CurrentState = State.BREAKING;
         m_breakingProgress = 0.0f;
+        // TODO inertia
+        m_rigidbody.linearVelocity = new();
       }
     }
 
     // Deal damage once in a while
-    if (m_state == State.BREAKING) {
+    if (CurrentState == State.BREAKING) {
       m_breakingProgress += Time.deltaTime / secondsToBreak;
       
       // Deal damage
@@ -85,16 +98,40 @@ public class Zombie : MonoBehaviour {
 
   private void FixedUpdate() {
     // Move if not close enough
-    if (m_state == State.PURSUING) {
+    // if (m_state == State.PURSUING) {
+    //   Vector2 direction = m_targetPosition!.Value - transform.position;
+    //   float distance = direction.magnitude;
+    //   // Do not overshoot
+    //   float desiredSpeed = Mathf.Min(distance, moveSpeed);
+    //   
+    //   // Preform movement
+    //   var damping = m_rigidbody.linearVelocity;
+    //   var impulse = direction.normalized * desiredSpeed - damping;
+    //   m_rigidbody.AddForce(impulse, ForceMode2D.Impulse);
+    // }
+    
+    // Move if not close enough
+    if (CurrentState != State.PURSUING) {
+      m_rigidbody.linearVelocity = new();
+    }
+    
+    if (CurrentState == State.PURSUING) {
       Vector2 direction = m_targetPosition!.Value - transform.position;
       float distance = direction.magnitude;
-      // Do not overshoot
-      float desiredSpeed = Mathf.Min(distance, moveSpeed);
-      
-      // Preform movement
-      var damping = m_rigidbody.linearVelocity;
-      var impulse = direction * desiredSpeed - damping;
-      m_rigidbody.AddForce(impulse, ForceMode2D.Impulse);
+
+      // If close enough, stop moving
+      if (distance < stopDistance) {
+        m_rigidbody.linearVelocity = Vector2.zero;
+        return;
+      }
+
+      direction.Normalize();
+
+      // Steering behaviour
+      Vector2 desiredVelocity = direction * moveSpeed;
+      Vector2 steering = desiredVelocity - m_rigidbody.linearVelocity;
+
+      m_rigidbody.AddForce(steering, ForceMode2D.Force);
     }
   }
 
@@ -111,12 +148,16 @@ public class Zombie : MonoBehaviour {
 
   public void SetTarget(Vector3? targetPosition = null, HealthSystem targetHealth = null) {
     if (targetPosition is null) {
-      m_state = State.IDLE;
+      CurrentState = State.IDLE;
       return;
     }
     
-    m_state = State.PURSUING;
-    m_targetPosition = targetPosition;
+    CurrentState = State.PURSUING;
+    
+    // Random offset
+    float randomX = UnityEngine.Random.Range(-targetOffset, targetOffset);
+    float randomY = UnityEngine.Random.Range(-targetOffset, targetOffset);
+    m_targetPosition = targetPosition.Value + new Vector3(randomX, randomY, 0);
     m_targetHealth = targetHealth;
   }
 }

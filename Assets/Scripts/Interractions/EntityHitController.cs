@@ -28,14 +28,14 @@ public class EntityHitController : MonoBehaviour {
       }
 
       Zombie zombieComponent = hit.collider.GetComponent<Zombie>();
-      if (zombieComponent && GameManager.Instance.GetCurrentRoom() == RoomType.GARAGE) {
+      if (zombieComponent) {
         HealthSystem healthSystemComponent = hit.collider.GetComponent<HealthSystem>();
         healthSystemComponent.health.Value -= 1;
-        continue;
+        break;
       }
       
       Ghost ghostComponent = hit.collider.GetComponent<Ghost>();
-      if (ghostComponent && GameManager.Instance.GetCurrentRoom() == RoomType.LIVING_ROOM) {
+      if (ghostComponent) {
         HealthSystem healthSystemComponent = hit.collider.GetComponent<HealthSystem>();
         healthSystemComponent.health.Value -= 1;
         
@@ -43,6 +43,7 @@ public class EntityHitController : MonoBehaviour {
         
         // Give candy =)
         GameManager.Instance.CandyCount.Value += 1;
+        break;
       }
     }
   }

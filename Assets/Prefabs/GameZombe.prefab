@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9bbd0d51d2c6c47ae341d924141a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vfx: {fileID: 5685256418181453149, guid: 99b7a6319c8e6af4691ee836eaf9ad89, type: 3}
   rendererTransform: {fileID: 4838024400306864835}
   moveSpeed: 2
   stopDistance: 0.3

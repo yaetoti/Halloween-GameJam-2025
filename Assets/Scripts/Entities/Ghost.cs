@@ -7,13 +7,17 @@ using UnityEngine;
 // Give random speed
 // Increase default speed
 
-
-public class Ghost : MonoBehaviour {
-  public enum State {
+public class Ghost : MonoBehaviour
+{
+  public enum State
+  {
     IDLE,
     PURSUING,
   }
-  
+
+  [SerializeField]
+  private Transform vfx;
+
   // Params
   [SerializeField]
   private Transform rendererTransform;
@@ -41,41 +45,49 @@ public class Ghost : MonoBehaviour {
   private float m_standingProgress;
   private float m_moveSpeed;
 
-  public State CurrentState {
+  public State CurrentState
+  {
     get => state.Value;
-    set {
-      if (value != state.Value) {
+    set
+    {
+      if (value != state.Value)
+      {
         state.Value = value;
       }
     }
   }
 
-  private void Awake() {
+  private void Awake()
+  {
     m_rigidbody = GetComponent<Rigidbody2D>();
     m_healthSystem = GetComponent<HealthSystem>();
     m_healthSystem.health.AddListener(OnHealthChange);
-    
+
     m_moveSpeed = Random.Range(moveSpeedMin, moveSpeedMax);
     state = new(State.IDLE);
     UpdateWaitingTime();
   }
 
-  private void OnDestroy() {
+  private void OnDestroy()
+  {
     m_healthSystem.health.RemoveListener(OnHealthChange);
   }
 
-  private void Update() {
+  private void Update()
+  {
     // Come close, start breaking
-    if (CurrentState == State.PURSUING) {
+    if (CurrentState == State.PURSUING)
+    {
       Vector2 direction = m_targetPosition!.Value - transform.position;
       float distance = direction.magnitude;
-      
+
       // Rotate towards the target
       // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
       // rendererTransform.rotation = Quaternion.Euler(0, 0, angle);
-      
+
       // Check stopping condition
-      if (distance <= stopDistance) {
+      if (distance <= stopDistance)
+      {
         CurrentState = State.IDLE;
         UpdateWaitingTime();
         // TODO inertia
@@ -84,32 +96,38 @@ public class Ghost : MonoBehaviour {
     }
 
     // Deal damage once in a while
-    if (CurrentState == State.IDLE) {
+    if (CurrentState == State.IDLE)
+    {
       m_standingProgress += Time.deltaTime / m_standingTimeSeconds;
-      
+
       // Pursue the new target
-      if (m_standingProgress >= 1.0f) {
+      if (m_standingProgress >= 1.0f)
+      {
         m_standingProgress = 0.0f;
         UpdatePosition();
         CurrentState = State.PURSUING;
       }
     }
-    
+
     // Idle handling. Do not touch
   }
 
-  private void FixedUpdate() {
+  private void FixedUpdate()
+  {
     // Move if not close enough
-    if (CurrentState != State.PURSUING) {
+    if (CurrentState != State.PURSUING)
+    {
       m_rigidbody.linearVelocity = new();
     }
-    
-    if (CurrentState == State.PURSUING) {
+
+    if (CurrentState == State.PURSUING)
+    {
       Vector2 direction = m_targetPosition!.Value - transform.position;
       float distance = direction.magnitude;
 
       // If close enough, stop moving, wait a bit, go to the new position
-      if (distance < stopDistance) {
+      if (distance < stopDistance)
+      {
         CurrentState = State.IDLE;
         m_rigidbody.linearVelocity = Vector2.zero;
         UpdateWaitingTime();
@@ -126,22 +144,27 @@ public class Ghost : MonoBehaviour {
     }
   }
 
-  private void OnHealthChange(int health) {
+  private void OnHealthChange(int health)
+  {
     // DIE MOTHERFUCKER DIE MOTHERFUCKER DIEEEEEE
-    if (health <= 0) {
+    if (health <= 0)
+    {
+      Instantiate(vfx, transform.position, Quaternion.identity);
       Destroy(gameObject);
     }
   }
-  
-  
+
+
   // --- State Management ---
 
-  private void UpdateWaitingTime() {
+  private void UpdateWaitingTime()
+  {
     m_standingProgress = 0.0f;
     m_standingTimeSeconds = Random.Range(standingTimeSecondsMin, standingTimeSecondsMax);
   }
 
-  private void UpdatePosition() {
+  private void UpdatePosition()
+  {
     m_targetPosition = GhostSpawnManager.Instance.GetRandomPosition();
 
     // Random offset

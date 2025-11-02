@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953c76f0898edaa4e92d512d2953b353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vfx: {fileID: 5685256418181453149, guid: 00580c7d8f5ddcf489c25d9cddd7450f, type: 3}
   rendererTransform: {fileID: 8716834858208539357}
   moveSpeedMin: 1
   moveSpeedMax: 5

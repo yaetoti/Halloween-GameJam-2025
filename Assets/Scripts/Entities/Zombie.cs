@@ -9,13 +9,18 @@ using UnityEngine;
 // How to get lure location? AHH WE NEED A SPAWNER AHAHAHHAH "ahh" ahh energy
 
 public class Zombie : MonoBehaviour {
-  public enum State {
+  public enum State
+  {
     IDLE,
     PURSUING,
     BREAKING,
   }
   
   // Params
+  
+  [SerializeField]
+  private Transform vfx;
+
   [SerializeField]
   private Transform rendererTransform;
   [SerializeField]
@@ -137,7 +142,9 @@ public class Zombie : MonoBehaviour {
 
   private void OnHealthChange(int health) {
     // DIE MOTHERFUCKER DIE MOTHERFUCKER DIEEEEEE
+
     if (health <= 0) {
+      Instantiate(vfx, transform.position, Quaternion.identity);
       Destroy(gameObject);
     }
   }

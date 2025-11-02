@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EntityHitController : MonoBehaviour {
   public Camera mainCamera;
+
+  public List<AudioSource> bonks;
   
   private void Update() {
     // Debug.Log($"AppState: {ApplicationManager.Instance.GetAppState()}");
@@ -23,7 +26,8 @@ public class EntityHitController : MonoBehaviour {
     //Debug.Log($"Colliders: {hits.Length}");
     
     foreach (var hit in hits) {
-      if (!hit.collider) {
+      if (!hit.collider)
+      {
         continue;
       }
 
@@ -31,7 +35,10 @@ public class EntityHitController : MonoBehaviour {
       if (zombieComponent) {
         HealthSystem healthSystemComponent = hit.collider.GetComponent<HealthSystem>();
         healthSystemComponent.health.Value -= 1;
-
+        
+        int index = UnityEngine.Random.Range(0, 3);
+        bonks[index].Play();
+        
         // GIVE US A SIGN
         if (healthSystemComponent.Health <= 0) {
           GhostSpawnManager.Instance.SpawnGhost();

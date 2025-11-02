@@ -29,6 +29,16 @@ public class DoorAnimator : MonoBehaviour
     public Sprite bo1;
     public Sprite bo2;
 
+    public AudioSource audio;
+    public AudioSource clockRoom;
+
+    private bool m_isRoomA;
+
+    void OnEnable()
+    {
+        m_isRoomA = true;
+    }
+
     public void UpdateState(bool isOpen = false)
     {
         if (isOpen)
@@ -78,6 +88,10 @@ public class DoorAnimator : MonoBehaviour
     {
         UpdateState(true);
 
+        m_isRoomA = !m_isRoomA;
+        audio.Play();
+        clockRoom.volume = m_isRoomA ? 0.185f : .05f;
+        
         yield return new WaitForSeconds(AnimationSpeed);
 
         UpdateState(false);

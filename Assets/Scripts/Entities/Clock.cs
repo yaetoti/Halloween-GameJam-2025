@@ -48,6 +48,8 @@ public class Clock : MonoBehaviour {
   private int endTimeMinutes;
   [SerializeField]
   private float gameTimeSeconds;
+
+  private bool m_isWinding;
   
   // State
   // [0-1]
@@ -71,7 +73,9 @@ public class Clock : MonoBehaviour {
   [Space(10)]
   [SerializeField]
   private Animator m_anim;
-  
+
+  [Space(10)]
+  public AudioSource winding;
 
   public float UnwindingProgress {
     get => unwindingProgress.Value;
@@ -99,6 +103,7 @@ public class Clock : MonoBehaviour {
 
   private void Awake() {
     m_anim = GetComponent<Animator>();
+    m_isWinding = false;
   }
 
   public void Update() {
@@ -124,6 +129,11 @@ public class Clock : MonoBehaviour {
     
     Vector2 mouseWorld = mainCamera.ScreenToWorldPoint(Input.mousePosition);
     float progress = UnwindingProgress;
+
+    if (!winding.isPlaying && m_isWinding)
+        {
+      winding.Play();
+        }
     
     // If the cursor is inside the collider and LMB is pressed - wind up
     if (Input.GetKey(KeyCode.Mouse0) && clockCollider.OverlapPoint(mouseWorld)) {
@@ -131,19 +141,23 @@ public class Clock : MonoBehaviour {
       CurrentClockState.Value = ClockState.WINDING;
       progress -= Time.deltaTime / secondsToWind;
 
-      if (progress <= 0.0f) {
+      if (progress <= 0.0f)
+      {
         progress = 0.0f;
       }
+      m_isWinding = true;
     }
     // Otherwise - unwind
     else {
       CurrentClockState.Value = ClockState.UNWINDING;
       progress += Time.deltaTime / secondsToUnwind;
-      
-      if (progress >= 1.0f) {
+
+      if (progress >= 1.0f)
+      {
         progress = 1.0f;
         CurrentClockState.Value = ClockState.BROKEN;
       }
+      m_isWinding = false;
     }
     
     UnwindingProgress = progress;

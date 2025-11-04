@@ -12,6 +12,7 @@ public class MenuBackgroundController : MonoBehaviour {
   
   private void Start() {
     SpawnLure();
+    Shader.SetGlobalFloat("_LightLerp", 1.0f);
   }
 
   private void Update() {
